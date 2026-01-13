@@ -3,6 +3,7 @@
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { FloatingProducts } from "@/components/floating-products"
 
 function WireframeSection({
   label,
@@ -18,7 +19,7 @@ function WireframeSection({
   return (
     <section className={`relative ${className}`}>
       <Badge
-        className={`absolute -top-3 left-4 z-10 ${dark ? "bg-white text-primary" : "bg-primary text-white"}`}
+        className={`absolute top-2 left-4 z-20 ${dark ? "bg-white text-primary" : "bg-primary text-white"}`}
       >
         {label}
       </Badge>
@@ -48,29 +49,49 @@ function Placeholder({
 export default function WireframePage() {
   return (
     <div className="min-h-screen bg-background">
-      {/* Header/Navigation */}
-      <WireframeSection label="1. NAVIGATION" className="border-b">
-        <header className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center text-xs font-bold">
-                LOGO
+      {/* Header/Navigation - Sticky White */}
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+        <Badge className="absolute top-1 left-4 z-10 bg-primary text-white">1. NAVIGATION</Badge>
+          <div className="container mx-auto px-4 py-3">
+            <div className="flex items-center justify-between">
+              {/* Logo */}
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-secondary rounded-full flex items-center justify-center text-xs font-bold text-secondary-foreground shadow-sm">
+                  PP
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-bold text-primary text-lg leading-tight">PABORITO</span>
+                  <span className="text-[10px] text-muted-foreground leading-tight hidden sm:block">Agribiotech Solutions</span>
+                </div>
               </div>
-              <span className="font-bold text-primary">PABORITO</span>
+              {/* Nav Links */}
+              <nav className="hidden md:flex items-center gap-1">
+                {["Home", "Products", "About", "Dealers"].map((item, i) => (
+                  <span
+                    key={i}
+                    className={`px-3 py-2 text-sm rounded-md cursor-pointer transition-colors ${
+                      i === 0
+                        ? "text-primary font-medium"
+                        : "text-muted-foreground hover:text-primary hover:bg-muted/50"
+                    }`}
+                  >
+                    {item}
+                  </span>
+                ))}
+              </nav>
+
+              {/* CTA Button */}
+              <div className="flex items-center gap-3">
+                <span className="hidden lg:block text-sm text-muted-foreground">
+                  +63 XXX XXX XXXX
+                </span>
+                <Button className="bg-destructive hover:bg-destructive/90 shadow-sm">
+                  Contact Us
+                </Button>
+              </div>
             </div>
-            <nav className="hidden md:flex items-center gap-6 text-sm">
-              <span className="text-muted-foreground">Home</span>
-              <span className="text-muted-foreground">Products</span>
-              <span className="text-muted-foreground">About</span>
-              <span className="text-muted-foreground">Dealers</span>
-              <span className="text-muted-foreground">Contact</span>
-            </nav>
-            <Button variant="default" className="bg-destructive hover:bg-destructive/90">
-              Contact Us
-            </Button>
           </div>
-        </header>
-      </WireframeSection>
+      </header>
 
       {/* Hero Section */}
       <WireframeSection label="2. HERO (Sunburst BG)" dark>
@@ -100,21 +121,15 @@ export default function WireframePage() {
                   </Button>
                 </div>
               </div>
-              {/* Right: Product Images */}
-              <div className="relative">
-                <Placeholder
-                  label="Product Images (Floating)"
-                  height="h-64 md:h-80"
-                  className="bg-white/20 border-white/50"
-                />
-              </div>
+              {/* Right: Product Images - Floating Arrangement */}
+              <FloatingProducts />
             </div>
           </div>
         </div>
       </WireframeSection>
 
       {/* Trust Bar */}
-      <WireframeSection label="3. TRUST BAR">
+      <WireframeSection label="3. TRUST BAR" dark>
         <div className="bg-primary text-primary-foreground py-6">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
@@ -317,7 +332,7 @@ export default function WireframePage() {
       </WireframeSection>
 
       {/* Footer */}
-      <WireframeSection label="10. FOOTER">
+      <WireframeSection label="10. FOOTER" dark>
         <footer className="bg-primary text-primary-foreground py-12">
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-4 gap-8 mb-8">
