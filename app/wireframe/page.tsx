@@ -149,10 +149,11 @@ export default function WireframePage() {
         </div>
       </WireframeSection>
 
-      {/* Value Propositions */}
+      {/* Value Propositions - Split Layout with Video */}
       <WireframeSection label="4. VALUE PROPOSITIONS" className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-10">
+          {/* Section Header */}
+          <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-primary mb-3">
               Why Choose Paborito?
             </h2>
@@ -160,20 +161,51 @@ export default function WireframePage() {
               Scientifically formulated supplements for optimal poultry health
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { icon: "🥚", title: "Egg Productivity Booster", desc: "Increase egg production and quality naturally" },
-              { icon: "🛡️", title: "Immune System Enhancer", desc: "Strengthen resistance against common diseases" },
-              { icon: "📈", title: "Growth Promoter", desc: "Optimize feed conversion and weight gain" },
-            ].map((item, i) => (
-              <Card key={i} className="text-center p-6 hover:shadow-lg transition-shadow">
-                <CardContent className="pt-4">
-                  <div className="text-4xl mb-4">{item.icon}</div>
-                  <h3 className="font-bold text-primary mb-2">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.desc}</p>
-                </CardContent>
-              </Card>
-            ))}
+
+          {/* Split Layout: Video + Cards */}
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* Left: Video Placeholder */}
+            <div className="order-2 lg:order-1">
+              <div className="relative aspect-video rounded-xl overflow-hidden border-2 border-dashed border-muted-foreground/30 bg-muted/50">
+                {/* Play button overlay */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-destructive/90 flex items-center justify-center shadow-lg mb-3">
+                    <svg
+                      className="w-6 h-6 md:w-8 md:h-8 text-white ml-1"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                  <span className="text-sm text-muted-foreground font-medium">Product Video</span>
+                  <span className="text-xs text-muted-foreground/60 mt-1">Learn what our products can do</span>
+                </div>
+                {/* Video duration badge */}
+                <div className="absolute bottom-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                  2:30
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Stacked Benefit Cards */}
+            <div className="order-1 lg:order-2 space-y-4">
+              {[
+                { icon: "🥚", title: "Egg Productivity Booster", desc: "Increase egg production and quality naturally with our proven formula" },
+                { icon: "🛡️", title: "Immune System Enhancer", desc: "Strengthen resistance against common poultry diseases" },
+                { icon: "📈", title: "Growth Promoter", desc: "Optimize feed conversion and achieve better weight gain" },
+              ].map((item, i) => (
+                <Card key={i} className="p-4 hover:shadow-lg transition-shadow">
+                  <CardContent className="p-0 flex items-start gap-4">
+                    <div className="text-3xl flex-shrink-0">{item.icon}</div>
+                    <div>
+                      <h3 className="font-bold text-primary mb-1">{item.title}</h3>
+                      <p className="text-sm text-muted-foreground">{item.desc}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </div>
       </WireframeSection>

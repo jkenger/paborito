@@ -14,97 +14,35 @@
 - `logo.png` - Main logo featuring peacock/turkey feather design with "PP" monogram
 - `background.png` - Hero banner with product lineup and sunburst pattern
 
-### Brand Identity Extracted
+### Brand Guidelines Created
 
-**Company Info:**
-- Full Name: Paborito Agribiotech Solutions, Corp.
-- Established: 2012
-- Products: Poultry digestive health supplements (Progastro, Progastro Plus, Odor & Fly Powder)
+Established comprehensive brand guidelines document.
 
-**Color Palette (OKLCH):**
+**See:** [`docs/brand-guidelines.md`](./brand-guidelines.md)
 
-| Token | Light Mode | Usage |
-|-------|------------|-------|
-| `--primary` | `oklch(0.35 0.1 145)` | Dark forest green - headings, buttons |
-| `--secondary` | `oklch(0.75 0.18 125)` | Lime green - badges, highlights |
-| `--accent` | `oklch(0.78 0.16 70)` | Orange/gold - hero bg, warm accents |
-| `--destructive` | `oklch(0.55 0.22 25)` | Red - CTAs, alerts |
-| `--background` | `oklch(0.99 0.005 90)` | Warm off-white |
-
-**Design Tokens:**
-- Border radius: `0.5rem` (friendly, rounded feel)
-- Warm undertones throughout
+**Key decisions:**
+- Color palette: Forest green, lime green, orange gold, action red
+- Sunburst pattern using `conic-gradient` with hard color stops
+- Typography: System sans-serif, bold headings
+- Border radius: `0.5rem` (friendly feel)
+- Animation library: Motion (Framer Motion)
 
 ---
 
-### Design Research Summary
+### Design Research Conducted
 
-#### High-Converting Landing Page Patterns
-Source: [Unbounce](https://unbounce.com/landing-page-examples/high-converting-landing-pages/)
+**Sources reviewed:**
+- [Unbounce](https://unbounce.com/landing-page-examples/high-converting-landing-pages/) - Landing page patterns
+- [Eight Media](https://eightmedia.ph/blog/filipino-branding-mix-traditional-and-modern-graphic-design/) - Filipino branding
+- [Smart Chicken](https://smartchicken.com), [Foster Farms](https://fosterfarms.com) - Poultry industry sites
+- [Fireart Studio](https://fireart.studio/blog/examples-of-poultry-websites-with-fantastic-designs/) - Poultry website examples
 
-**Recommended Section Order:**
-1. Hero - Product in context, clear value prop, single CTA
-2. Value Props - Benefits over features, address pain points
-3. Social Proof - Testimonials, partner logos, credibility
-4. Features/Products - Scannable benefits, concise copy
-5. CTA (repeated) - Descriptive button copy
-
-**Key Principles:**
-- Maintain "conversion scent" - consistent messaging throughout
-- Remove navigation distractions on landing pages
+**Key takeaways:**
 - Mobile-first design (83% of traffic)
-- Use directional cues toward CTAs
-
-#### Filipino Branding Insights
-Source: [Eight Media](https://eightmedia.ph/blog/filipino-branding-mix-traditional-and-modern-graphic-design/)
-
-**What Works:**
-- Bright, festive colors resonate with Filipino audiences
-- Humor and relatability in copy > corporate tone
-- Jeepney-style typography creates cultural authenticity
-- Mobile-first is critical (majority of PH users on mobile)
-
-**Cultural Elements:**
-- Indigenous patterns add historical depth
-- Pinoy-friendly typography (jeepney signage style)
-- Balance cultural roots with modern design
-
-#### Poultry Industry Website Patterns
-Sources: [Smart Chicken](https://smartchicken.com), [Foster Farms](https://fosterfarms.com), [Fireart Studio](https://fireart.studio/blog/examples-of-poultry-websites-with-fantastic-designs/)
-
-**Common Patterns:**
-- Clean, modular layouts with generous whitespace
-- Full-width hero imagery showing products in use
-- Recipe/lifestyle integration rather than just specs
-- "Find a Store" / "Where to Buy" as prominent CTAs
+- Bright colors resonate with Filipino audiences
+- Benefit-focused copy over features
 - Testimonials near conversion points
-- Social feed integration for community trust
-
-**Color Schemes Observed:**
-- Smart Chicken: Navy blue (#005487), Gold (#ffb600), White, Dark red
-- Foster Farms: Neutral tones, emphasis on product photography
-
----
-
-### Design Direction Decisions
-
-**Visual Style:** Sunburst gradient hero with floating product images
-- Leverages existing brand asset (background.png)
-- Card-based modular layout
-- Generous whitespace, mobile-first
-- Green/gold brand palette with red CTAs
-
-**Typography:** Bold, friendly headings with clear body text
-
-**Copywriting Tone:** Warm & Relatable
-- Friendly Filipino business tone
-- Accessible language for farmers
-- Benefit-focused messaging
-
-**Key Elements:**
-- Peacock/feather motifs as decorative accents
-- Checkmark icons for benefits (matching brand materials)
-- Warm, organic textures where appropriate
+- Clean layouts with generous whitespace
 
 ---
 
@@ -169,3 +107,152 @@ Sources: [Smart Chicken](https://smartchicken.com), [Foster Farms](https://foste
 **Filipino Branding:**
 - https://eightmedia.ph/blog/filipino-branding-mix-traditional-and-modern-graphic-design/
 - https://sunday.ph/5-proven-ways-filipino-brands-win-through-design/
+
+---
+
+## 2026-01-13 | Wireframe Refinements & Animation Setup
+
+### Navigation Header Refinements
+
+Updated the navigation to a **white sticky header** design:
+
+```
+- Sticky positioning: `sticky top-0 z-50`
+- Background: `bg-white/95 backdrop-blur-sm shadow-sm`
+- Removed border for cleaner look
+```
+
+**Navigation Structure:**
+- Logo placeholder with "PP" monogram + "PABORITO" text + tagline
+- Nav links with pill-style hover states (`rounded-md hover:bg-muted/50`)
+- Phone number visible on large screens
+- Red CTA button ("Contact Us")
+
+---
+
+### Sunburst Background Implementation
+
+Implemented CSS `conic-gradient` sunburst pattern for hero section:
+
+**Final Implementation:**
+```css
+conic-gradient(
+  from 180deg at 50% 100%,
+  #F7A800 0deg 10deg,
+  #FFD54F 10deg 20deg,
+  /* ... alternating rays */
+)
+```
+
+**Key Details:**
+- Rays emanate from bottom center (`at 50% 100%`)
+- Hard color stops for sharp edges (not blended)
+- 36 rays at 10deg each
+- Alternating between `#F7A800` (darker orange) and `#FFD54F` (lighter gold)
+
+---
+
+### Animation Library Research
+
+Researched options for animated floating product showcase:
+
+| Library | Pros | Cons |
+|---------|------|------|
+| **Framer Motion** | Full control, spring physics, Next.js native | Custom coding needed |
+| **Aceternity UI** | Copy-paste, polished components | Some paid |
+| **Hover.dev** | Pre-built hero sections | Premium features |
+| **Animata** | Free, open-source | Limited options |
+| **Pure CSS** | Zero dependencies | Limited interactivity |
+
+**Decision:** Use **Framer Motion** (now called `motion`) for full control and spring physics animations.
+
+**Reference Links:**
+- https://motion.dev/ - Official Motion library
+- https://examples.motion.dev/ - 330+ animation examples
+- https://ui.aceternity.com/components/hero-sections - Aceternity hero components
+- https://www.hover.dev/components/heros - Hover.dev hero sections
+- https://animata.design/docs/hero/hero-section - Animata components
+
+---
+
+### Floating Products Component
+
+Created `components/floating-products.tsx` with Framer Motion animations.
+
+**Layout Style:** Arc/Curved (smile shape)
+- Center product at top (hero focus)
+- Left and right products lower, curving down
+- Products rotated to follow arc curve
+
+**Arc Positions:**
+```typescript
+const arcPositions = [
+  { x: "22%", y: "32%", rotate: -10, scale: 0.88 },  // Left
+  { x: "50%", y: "5%", rotate: 0, scale: 1 },        // Center (hero)
+  { x: "78%", y: "32%", rotate: 10, scale: 0.88 },   // Right
+]
+```
+
+**Animations Implemented:**
+| Animation | Description |
+|-----------|-------------|
+| Entrance | Spring physics fade-in with staggered delay |
+| Float | Continuous Y-axis bob (2.5-3s cycle) |
+| Hover | Scale 1.05, straighten rotation, lift -8px |
+| Decorations | Chicken & egg with gentle bounce/rotate |
+
+**Styling:** Wireframe placeholder style
+- Dashed borders (`border-2 border-dashed border-white/60`)
+- Semi-transparent background (`bg-white/20`)
+- Inner "Product Image" placeholder boxes
+
+---
+
+### Dependencies Added
+
+```bash
+npm install motion
+```
+
+**Package:** `motion` (formerly framer-motion)
+- Spring physics animations
+- GPU-accelerated transforms
+- React/Next.js optimized
+
+---
+
+### Files Modified/Created
+
+**New Components:**
+- `components/floating-products.tsx` - Animated product showcase
+
+**Updated:**
+- `app/wireframe/page.tsx` - Integrated FloatingProducts, refined nav header
+- `docs/devlog.md` - This update
+
+---
+
+### Current Wireframe Status
+
+| Section | Status | Notes |
+|---------|--------|-------|
+| Navigation | Refined | White sticky header, no border |
+| Hero | Refined | Sunburst bg, animated floating products |
+| Trust Bar | Complete | Dark badge visibility fixed |
+| Value Props | Complete | 3 benefit cards |
+| Products | Complete | 5-column grid |
+| Testimonials | Complete | 3 cards |
+| About | Complete | Story + placeholder |
+| Dealer CTA | Complete | Full-width banner |
+| Contact | Complete | Form + info |
+| Footer | Refined | Dark badge visibility fixed |
+
+---
+
+### Next Steps
+- [ ] Install `motion` package
+- [ ] Test animations in browser
+- [ ] Client review of wireframe
+- [ ] Receive product images (PNG with transparent bg)
+- [ ] Replace placeholders with actual assets
+- [ ] Build production components
