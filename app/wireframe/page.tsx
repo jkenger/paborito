@@ -381,26 +381,64 @@ export default function WireframePage() {
         </div>
       </WireframeSection>
 
-      {/* Dealer CTA */}
-      <WireframeSection label="9. DEALER CTA BANNER" dark>
+      {/* Partnership Section - Dealers & Partners */}
+      <WireframeSection label="9. PARTNERSHIPS" dark>
         <div className="py-16 bg-primary text-primary-foreground">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Become a Paborito Dealer
-            </h2>
-            <p className="text-primary-foreground/80 mb-6 max-w-2xl mx-auto">
-              Join our growing network of dealers across the Philippines. Enjoy exclusive benefits, competitive margins, and marketing support.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 mb-8">
-              {["Exclusive Pricing", "Marketing Materials", "Training Support", "Territory Rights"].map((benefit, i) => (
-                <Badge key={i} className="bg-secondary text-secondary-foreground">
-                  ✓ {benefit}
-                </Badge>
-              ))}
+          <div className="container mx-auto px-4">
+            {/* Section Header */}
+            <div className="text-center mb-12">
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">
+                Partner With Paborito
+              </h2>
+              <p className="text-primary-foreground/80 max-w-2xl mx-auto">
+                Join our growing network across the Philippines. We offer partnership opportunities for dealers and business partners.
+              </p>
             </div>
-            <Button size="lg" className="bg-destructive hover:bg-destructive/90 text-white">
-              Apply as Dealer
-            </Button>
+
+            {/* Two Cards: Dealers & Partners */}
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {/* Dealer Card */}
+              <Card className="bg-white/10 border-white/20 text-primary-foreground">
+                <CardContent className="p-6">
+                  <div className="text-3xl mb-3">🏪</div>
+                  <h3 className="text-xl font-bold mb-2">Become a Dealer</h3>
+                  <p className="text-sm opacity-80 mb-4">
+                    Sell Paborito products in your area with exclusive territory rights and competitive margins.
+                  </p>
+                  <ul className="space-y-2 text-sm mb-6">
+                    {["Exclusive Pricing", "Marketing Materials", "Training Support", "Territory Rights"].map((item, i) => (
+                      <li key={i} className="flex items-center gap-2">
+                        <span className="text-secondary">✓</span> {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <Button className="w-full bg-destructive hover:bg-destructive/90 text-white">
+                    Apply as Dealer
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {/* Partner Card */}
+              <Card className="bg-white/10 border-white/20 text-primary-foreground">
+                <CardContent className="p-6">
+                  <div className="text-3xl mb-3">🤝</div>
+                  <h3 className="text-xl font-bold mb-2">Become a Partner</h3>
+                  <p className="text-sm opacity-80 mb-4">
+                    Collaborate with us on distribution, co-branding, or strategic business partnerships.
+                  </p>
+                  <ul className="space-y-2 text-sm mb-6">
+                    {["Distribution Partnership", "Co-Branding Opportunities", "Bulk Supply Agreements", "Strategic Alliances"].map((item, i) => (
+                      <li key={i} className="flex items-center gap-2">
+                        <span className="text-secondary">✓</span> {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <Button className="w-full bg-white/20 hover:bg-white/30 text-white border border-white/30">
+                    Inquire Partnership
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </WireframeSection>

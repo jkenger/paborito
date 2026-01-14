@@ -342,28 +342,75 @@ export default function WireframePage2() {
         </div>
       </WireframeSection>
 
-      {/* Dealer CTA - Card Style */}
-      <WireframeSection label="9. DEALER CTA" className="py-16 bg-muted/30">
+      {/* Partnerships - Tabbed Style */}
+      <WireframeSection label="9. PARTNERSHIPS" className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
-          <Card className="bg-primary text-primary-foreground overflow-hidden">
-            <div className="grid md:grid-cols-2">
-              <CardContent className="p-8 md:p-12 flex flex-col justify-center">
-                <Badge className="w-fit mb-4 bg-secondary text-secondary-foreground">Partnership</Badge>
-                <h2 className="text-2xl md:text-3xl font-bold mb-4">
-                  Become a Dealer
-                </h2>
-                <p className="opacity-90 mb-6">
-                  Join our network and enjoy exclusive pricing, marketing support, and territory rights.
-                </p>
-                <Button size="lg" className="w-fit bg-destructive hover:bg-destructive/90 text-white">
-                  Apply Now
+          <div className="text-center mb-10">
+            <Badge className="mb-4 bg-primary text-primary-foreground">Work With Us</Badge>
+            <h2 className="text-2xl md:text-3xl font-bold text-primary mb-3">
+              Partnership Opportunities
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Join our growing network of dealers and partners across the Philippines
+            </p>
+          </div>
+
+          {/* Two Column Cards */}
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {/* Dealer */}
+            <Card className="overflow-hidden hover:shadow-lg transition-shadow">
+              <div className="bg-primary text-primary-foreground p-6">
+                <div className="text-3xl mb-2">🏪</div>
+                <h3 className="text-xl font-bold">Dealers</h3>
+                <p className="text-sm opacity-80">Retail & resell our products</p>
+              </div>
+              <CardContent className="p-6">
+                <ul className="space-y-3 text-sm mb-6">
+                  {[
+                    "Exclusive territory rights",
+                    "Competitive dealer pricing",
+                    "Marketing materials provided",
+                    "Training & ongoing support",
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="text-primary">✓</span>
+                      <span className="text-muted-foreground">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Button className="w-full bg-primary hover:bg-primary/90">
+                  Apply as Dealer
                 </Button>
               </CardContent>
-              <div className="hidden md:block">
-                <Placeholder label="Dealer Image" height="h-full min-h-[300px]" className="rounded-none border-0 bg-primary-foreground/10" />
+            </Card>
+
+            {/* Partner */}
+            <Card className="overflow-hidden hover:shadow-lg transition-shadow">
+              <div className="bg-secondary text-secondary-foreground p-6">
+                <div className="text-3xl mb-2">🤝</div>
+                <h3 className="text-xl font-bold">Partners</h3>
+                <p className="text-sm opacity-80">Strategic business collaboration</p>
               </div>
-            </div>
-          </Card>
+              <CardContent className="p-6">
+                <ul className="space-y-3 text-sm mb-6">
+                  {[
+                    "Distribution partnerships",
+                    "Co-branding opportunities",
+                    "Bulk supply agreements",
+                    "Strategic alliances",
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="text-primary">✓</span>
+                      <span className="text-muted-foreground">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Button variant="outline" className="w-full">
+                  Inquire Partnership
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </WireframeSection>
 
