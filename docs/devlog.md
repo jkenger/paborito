@@ -252,7 +252,81 @@ npm install motion
 ### Next Steps
 - [ ] Install `motion` package
 - [ ] Test animations in browser
-- [ ] Client review of wireframe
+- [ ] Client review of wireframes (v1 and v2)
 - [ ] Receive product images (PNG with transparent bg)
 - [ ] Replace placeholders with actual assets
 - [ ] Build production components
+
+---
+
+## 2026-01-14 | Wireframe v2 & Design Options
+
+### Top Banner Added (v1)
+
+Added thin contact info banner above navigation:
+- Phone number (all screens)
+- Email (sm+ screens)
+- Business address (md+ screens)
+- Primary green background
+
+---
+
+### Wireframe v2 Created
+
+**Location:** `app/wireframe-2/page.tsx`
+**Route:** `/wireframe-2`
+
+Created alternate design direction for client review.
+
+---
+
+### Design Comparison
+
+| Aspect | Wireframe v1 | Wireframe v2 |
+|--------|--------------|--------------|
+| **Hero** | Split layout (text + floating products) | Full-width centered overlay |
+| **Hero BG** | Orange/gold sunburst gradient | Green gradient with image placeholder |
+| **Products Animation** | Framer Motion floating arc | Static |
+| **Trust Stats** | Separate dark section below hero | Integrated into hero |
+| **Benefits** | Video + stacked cards (split) | Horizontal icon bar |
+| **Product Grid** | 5-column uniform grid | Asymmetric (1 large + 2 horizontal) |
+| **Testimonials** | 3-card grid | Single featured with carousel dots |
+| **FAQs** | Full-width accordion | Side-by-side (text + accordion) |
+| **Dealer CTA** | Full-width dark banner | Card with image |
+| **Footer** | 4-column detailed | Minimal horizontal |
+| **Top Banner** | Green bg, responsive | Muted bg, minimal |
+
+---
+
+### Design Philosophy
+
+**Wireframe v1 - "Dynamic & Engaging"**
+- Animated floating products draw attention
+- Sunburst pattern = brand signature
+- More content-dense sections
+- Traditional landing page structure
+
+**Wireframe v2 - "Clean & Focused"**
+- Full-width hero = dramatic first impression
+- Asymmetric layouts = modern feel
+- Single testimonial = focused social proof
+- Minimal footer = less clutter
+
+---
+
+### Files Created/Modified
+
+**New:**
+- `app/wireframe-2/page.tsx` - Second wireframe design
+
+**Modified:**
+- `app/wireframe/page.tsx` - Added top contact banner
+- `docs/devlog.md` - This update
+
+---
+
+### Next Steps
+- [ ] Client presentation: present both wireframe options
+- [ ] Gather client feedback on preferred direction
+- [ ] May combine elements from both designs
+- [ ] Proceed with chosen design to production

@@ -3,6 +3,12 @@
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 import { FloatingProducts } from "@/components/floating-products"
 
 function WireframeSection({
@@ -49,6 +55,28 @@ function Placeholder({
 export default function WireframePage() {
   return (
     <div className="min-h-screen bg-background">
+      {/* Top Banner - Contact Info */}
+      <div className="bg-primary text-primary-foreground text-xs py-2">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap items-center justify-center md:justify-between gap-x-6 gap-y-1">
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1">
+              <span className="flex items-center gap-1.5">
+                <span>📞</span>
+                <span>+63 XXX XXX XXXX</span>
+              </span>
+              <span className="hidden sm:flex items-center gap-1.5">
+                <span>✉️</span>
+                <span>info@paborito.ph</span>
+              </span>
+            </div>
+            <span className="hidden md:flex items-center gap-1.5">
+              <span>📍</span>
+              <span>Address placeholder, Philippines</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
       {/* Header/Navigation - Sticky White */}
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
         <Badge className="absolute top-1 left-4 z-10 bg-primary text-white">1. NAVIGATION</Badge>
@@ -82,9 +110,6 @@ export default function WireframePage() {
 
               {/* CTA Button */}
               <div className="flex items-center gap-3">
-                <span className="hidden lg:block text-sm text-muted-foreground">
-                  +63 XXX XXX XXXX
-                </span>
                 <Button className="bg-destructive hover:bg-destructive/90 shadow-sm">
                   Contact Us
                 </Button>
@@ -300,8 +325,64 @@ export default function WireframePage() {
         </div>
       </WireframeSection>
 
+      {/* FAQs */}
+      <WireframeSection label="8. FAQs" className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-primary mb-3">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Got questions? We&apos;ve got answers
+            </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto">
+            <Accordion className="space-y-3">
+              {[
+                {
+                  q: "How do I use Progastro for my poultry?",
+                  a: "Mix the recommended dosage with feed or drinking water. Detailed instructions are provided on each product package."
+                },
+                {
+                  q: "Are your products safe for all poultry types?",
+                  a: "Yes, our products are formulated for chickens, ducks, turkeys, and other poultry. Always follow the recommended dosage for each type."
+                },
+                {
+                  q: "How soon can I see results?",
+                  a: "Most farmers notice improvements in egg production and overall health within 2-4 weeks of consistent use."
+                },
+                {
+                  q: "Do you offer bulk pricing for large farms?",
+                  a: "Yes! Contact us for special pricing on bulk orders. We also have a dealer program with exclusive benefits."
+                },
+                {
+                  q: "Where can I buy Paborito products?",
+                  a: "You can order directly through our website, contact us via phone, or find an authorized dealer in your area."
+                },
+              ].map((faq, i) => (
+                <AccordionItem key={i} className="bg-card rounded-lg border px-4">
+                  <AccordionTrigger className="text-left font-medium text-primary hover:no-underline">
+                    {faq.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    {faq.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+
+          {/* Additional help CTA */}
+          <div className="text-center mt-8">
+            <p className="text-muted-foreground mb-3">Still have questions?</p>
+            <Button variant="outline">Contact Us</Button>
+          </div>
+        </div>
+      </WireframeSection>
+
       {/* Dealer CTA */}
-      <WireframeSection label="8. DEALER CTA BANNER" dark>
+      <WireframeSection label="9. DEALER CTA BANNER" dark>
         <div className="py-16 bg-primary text-primary-foreground">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
@@ -325,7 +406,7 @@ export default function WireframePage() {
       </WireframeSection>
 
       {/* Contact Section */}
-      <WireframeSection label="9. CONTACT SECTION" className="py-16 bg-muted/30">
+      <WireframeSection label="10. CONTACT SECTION" className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12">
             <div>
@@ -364,7 +445,7 @@ export default function WireframePage() {
       </WireframeSection>
 
       {/* Footer */}
-      <WireframeSection label="10. FOOTER" dark>
+      <WireframeSection label="11. FOOTER" dark>
         <footer className="bg-primary text-primary-foreground py-12">
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-4 gap-8 mb-8">
