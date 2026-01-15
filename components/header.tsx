@@ -122,9 +122,8 @@ export function Header() {
               <Button
                 asChild
                 className="w-full bg-destructive hover:bg-destructive/90 shadow-sm text-base py-6"
-                onClick={() => setMobileMenuOpen(false)}
               >
-                <Link href="/contact">Contact Us</Link>
+                <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>Contact Us</Link>
               </Button>
             </div>
           </nav>
