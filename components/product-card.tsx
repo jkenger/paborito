@@ -34,8 +34,13 @@ export function ProductCard({ product }: ProductCardProps) {
       <CardContent className="p-5">
         <h3 className="font-bold text-primary text-base mb-2">{product.name}</h3>
         <p className="text-sm text-muted-foreground mb-4">{product.shortDescription}</p>
-        <Button asChild size="sm" variant="outline" className="w-full text-sm py-4">
-          <Link href={`/products/${product.slug}`}>Learn More</Link>
+        <Button
+          render={<Link href={`/products/${product.slug}`} />}
+          size="sm"
+          variant="outline"
+          className="w-full text-sm py-4"
+        >
+          Learn More
         </Button>
       </CardContent>
     </Card>

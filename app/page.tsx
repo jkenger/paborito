@@ -1,21 +1,21 @@
-import Link from "next/link"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
-import { ProductCard } from "@/components/product-card"
-import { TestimonialCard } from "@/components/testimonial-card"
-import { ContactForm } from "@/components/contact-form"
-import { ImagePlaceholder } from "@/components/image-placeholder"
-import { FloatingProducts } from "@/components/floating-products"
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion"
+} from "@/components/ui/accordion";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { ProductCard } from "@/components/product-card";
+import { TestimonialCard } from "@/components/testimonial-card";
+import { ContactForm } from "@/components/contact-form";
+import { ImagePlaceholder } from "@/components/image-placeholder";
+import { FloatingProducts } from "@/components/floating-products";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
 import {
   siteConfig,
   heroContent,
@@ -26,7 +26,7 @@ import {
   aboutContent,
   faqs,
   partnershipContent,
-} from "@/lib/content"
+} from "@/lib/content";
 
 export default function HomePage() {
   return (
@@ -37,13 +37,16 @@ export default function HomePage() {
       <section
         className="py-20 md:py-28"
         style={{
-          background: "linear-gradient(135deg, #F7A800 0%, #FFD54F 50%, #F7A800 100%)",
+          background:
+            "linear-gradient(135deg, #F7A800 0%, #FFD54F 50%, #F7A800 100%)",
         }}
       >
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <FadeIn className="space-y-8">
-              <Badge className="bg-white/90 text-primary text-sm px-3 py-1">{heroContent.badge}</Badge>
+              <Badge className="bg-white/90 text-primary text-sm px-3 py-1">
+                {heroContent.badge}
+              </Badge>
               <h1 className="text-5xl md:text-6xl font-bold text-primary leading-tight">
                 {heroContent.headline}
               </h1>
@@ -51,11 +54,20 @@ export default function HomePage() {
                 {heroContent.subheadline}
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button asChild size="lg" className="bg-destructive hover:bg-destructive/90 text-white text-base px-8 py-6">
-                  <Link href={heroContent.primaryCta.href}>{heroContent.primaryCta.label}</Link>
+                <Button
+                  render={<Link href={heroContent.primaryCta.href} />}
+                  size="lg"
+                  className="bg-destructive hover:bg-destructive/90 text-white text-base px-8 py-6"
+                >
+                  {heroContent.primaryCta.label}
                 </Button>
-                <Button asChild size="lg" variant="outline" className="bg-white/80 border-primary text-primary text-base px-8 py-6">
-                  <Link href={heroContent.secondaryCta.href}>{heroContent.secondaryCta.label}</Link>
+                <Button
+                  render={<Link href={heroContent.secondaryCta.href} />}
+                  size="lg"
+                  variant="outline"
+                  className="bg-white/80 border-primary text-primary text-base px-8 py-6"
+                >
+                  {heroContent.secondaryCta.label}
                 </Button>
               </div>
             </FadeIn>
@@ -70,7 +82,9 @@ export default function HomePage() {
           <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {trustStats.map((stat, i) => (
               <StaggerItem key={i}>
-                <div className="text-3xl md:text-4xl font-bold text-secondary">{stat.value}</div>
+                <div className="text-3xl md:text-4xl font-bold text-secondary">
+                  {stat.value}
+                </div>
                 <div className="text-base opacity-80">{stat.label}</div>
               </StaggerItem>
             ))}
@@ -104,8 +118,12 @@ export default function HomePage() {
                       <path d="M8 5v14l11-7z" />
                     </svg>
                   </div>
-                  <span className="text-base text-muted-foreground font-medium">Product Video</span>
-                  <span className="text-sm text-muted-foreground/60 mt-1">Learn what our products can do</span>
+                  <span className="text-base text-muted-foreground font-medium">
+                    Product Video
+                  </span>
+                  <span className="text-sm text-muted-foreground/60 mt-1">
+                    Learn what our products can do
+                  </span>
                 </div>
                 <div className="absolute bottom-4 right-4 bg-black/70 text-white text-sm px-3 py-1 rounded">
                   2:30
@@ -125,8 +143,12 @@ export default function HomePage() {
                         {item.icon === "trending-up" && "📈"}
                       </div>
                       <div>
-                        <h3 className="font-bold text-primary text-lg mb-2">{item.title}</h3>
-                        <p className="text-base text-muted-foreground">{item.description}</p>
+                        <h3 className="font-bold text-primary text-lg mb-2">
+                          {item.title}
+                        </h3>
+                        <p className="text-base text-muted-foreground">
+                          {item.description}
+                        </p>
                       </div>
                     </CardContent>
                   </Card>
@@ -184,7 +206,9 @@ export default function HomePage() {
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-14 items-center">
             <FadeIn>
-              <Badge className="mb-5 text-sm px-3 py-1">{aboutContent.badge}</Badge>
+              <Badge className="mb-5 text-sm px-3 py-1">
+                {aboutContent.badge}
+              </Badge>
               <h2 className="text-3xl md:text-4xl font-bold text-primary mb-5">
                 {aboutContent.title}
               </h2>
@@ -193,8 +217,12 @@ export default function HomePage() {
                   {paragraph}
                 </p>
               ))}
-              <Button asChild variant="outline" className="text-base px-6 py-5">
-                <Link href={aboutContent.cta.href}>{aboutContent.cta.label}</Link>
+              <Button
+                render={<Link href={aboutContent.cta.href} />}
+                variant="outline"
+                className="text-base px-6 py-5"
+              >
+                {aboutContent.cta.label}
               </Button>
             </FadeIn>
             <FadeIn delay={0.2} className="h-72 md:h-96">
@@ -223,7 +251,10 @@ export default function HomePage() {
           <FadeIn delay={0.1} className="max-w-4xl mx-auto">
             <Accordion className="space-y-4">
               {faqs.map((faq, i) => (
-                <AccordionItem key={i} className="bg-card rounded-lg border px-5">
+                <AccordionItem
+                  key={i}
+                  className="bg-card rounded-lg border px-5"
+                >
                   <AccordionTrigger className="text-left font-medium text-primary text-lg hover:no-underline py-5">
                     {faq.question}
                   </AccordionTrigger>
@@ -236,9 +267,15 @@ export default function HomePage() {
           </FadeIn>
 
           <FadeIn delay={0.2} className="text-center mt-10">
-            <p className="text-lg text-muted-foreground mb-4">Still have questions?</p>
-            <Button asChild variant="outline" className="text-base px-6 py-5">
-              <Link href="/contact">Contact Us</Link>
+            <p className="text-lg text-muted-foreground mb-4">
+              Still have questions?
+            </p>
+            <Button
+              render={<Link href="/contact" />}
+              variant="outline"
+              className="text-base px-6 py-5"
+            >
+              Contact Us
             </Button>
           </FadeIn>
         </div>
@@ -262,7 +299,9 @@ export default function HomePage() {
               <Card className="bg-white/10 border-white/20 text-primary-foreground h-full">
                 <CardContent className="p-8">
                   <div className="text-4xl mb-4">🏪</div>
-                  <h3 className="text-2xl font-bold mb-3">{partnershipContent.dealer.title}</h3>
+                  <h3 className="text-2xl font-bold mb-3">
+                    {partnershipContent.dealer.title}
+                  </h3>
                   <p className="text-base opacity-80 mb-5">
                     {partnershipContent.dealer.description}
                   </p>
@@ -273,10 +312,11 @@ export default function HomePage() {
                       </li>
                     ))}
                   </ul>
-                  <Button asChild className="w-full bg-destructive hover:bg-destructive/90 text-white text-base py-6">
-                    <Link href={partnershipContent.dealer.cta.href}>
-                      {partnershipContent.dealer.cta.label}
-                    </Link>
+                  <Button
+                    render={<Link href={partnershipContent.dealer.cta.href} />}
+                    className="w-full bg-destructive hover:bg-destructive/90 text-white text-base py-6"
+                  >
+                    {partnershipContent.dealer.cta.label}
                   </Button>
                 </CardContent>
               </Card>
@@ -287,7 +327,9 @@ export default function HomePage() {
               <Card className="bg-white/10 border-white/20 text-primary-foreground h-full">
                 <CardContent className="p-8">
                   <div className="text-4xl mb-4">🤝</div>
-                  <h3 className="text-2xl font-bold mb-3">{partnershipContent.partner.title}</h3>
+                  <h3 className="text-2xl font-bold mb-3">
+                    {partnershipContent.partner.title}
+                  </h3>
                   <p className="text-base opacity-80 mb-5">
                     {partnershipContent.partner.description}
                   </p>
@@ -298,10 +340,11 @@ export default function HomePage() {
                       </li>
                     ))}
                   </ul>
-                  <Button asChild className="w-full bg-white/20 hover:bg-white/30 text-white border border-white/30 text-base py-6">
-                    <Link href={partnershipContent.partner.cta.href}>
-                      {partnershipContent.partner.cta.label}
-                    </Link>
+                  <Button
+                    render={<Link href={partnershipContent.partner.cta.href} />}
+                    className="w-full bg-white/20 hover:bg-white/30 text-white border border-white/30 text-base py-6"
+                  >
+                    {partnershipContent.partner.cta.label}
                   </Button>
                 </CardContent>
               </Card>
@@ -319,18 +362,27 @@ export default function HomePage() {
                 Get in Touch
               </h2>
               <p className="text-lg text-muted-foreground mb-8">
-                Have questions about our products? Ready to place an order? We&apos;re here to help!
+                Have questions about our products? Ready to place an order?
+                We&apos;re here to help!
               </p>
               <div className="space-y-5">
                 <div className="flex items-center gap-4">
                   <span className="text-2xl">📍</span>
-                  <span className="text-base">{siteConfig.contact.address}</span>
+                  <span className="text-base">
+                    {siteConfig.contact.address}
+                  </span>
                 </div>
-                <a href={`tel:${siteConfig.contact.phone}`} className="flex items-center gap-4 hover:text-primary transition-colors">
+                <a
+                  href={`tel:${siteConfig.contact.phone}`}
+                  className="flex items-center gap-4 hover:text-primary transition-colors"
+                >
                   <span className="text-2xl">📞</span>
                   <span className="text-base">{siteConfig.contact.phone}</span>
                 </a>
-                <a href={`mailto:${siteConfig.contact.email}`} className="flex items-center gap-4 hover:text-primary transition-colors">
+                <a
+                  href={`mailto:${siteConfig.contact.email}`}
+                  className="flex items-center gap-4 hover:text-primary transition-colors"
+                >
                   <span className="text-2xl">✉️</span>
                   <span className="text-base">{siteConfig.contact.email}</span>
                 </a>
@@ -339,7 +391,9 @@ export default function HomePage() {
             <FadeIn delay={0.2}>
               <Card className="p-8">
                 <CardContent className="pt-0">
-                  <h3 className="font-bold text-primary text-xl mb-5">Quick Inquiry</h3>
+                  <h3 className="font-bold text-primary text-xl mb-5">
+                    Quick Inquiry
+                  </h3>
                   <ContactForm />
                 </CardContent>
               </Card>
@@ -350,5 +404,5 @@ export default function HomePage() {
 
       <Footer />
     </div>
-  )
+  );
 }

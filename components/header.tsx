@@ -66,8 +66,11 @@ export function Header() {
 
             {/* Desktop CTA Button */}
             <div className="hidden md:flex items-center gap-4">
-              <Button asChild className="bg-destructive hover:bg-destructive/90 shadow-sm text-base px-6 py-5">
-                <Link href="/contact">Contact Us</Link>
+              <Button
+                render={<Link href="/contact" />}
+                className="bg-destructive hover:bg-destructive/90 shadow-sm text-base px-6 py-5"
+              >
+                Contact Us
               </Button>
             </div>
 
@@ -120,10 +123,10 @@ export function Header() {
             ))}
             <div className="pt-4">
               <Button
-                asChild
+                render={<Link href="/contact" onClick={() => setMobileMenuOpen(false)} />}
                 className="w-full bg-destructive hover:bg-destructive/90 shadow-sm text-base py-6"
               >
-                <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>Contact Us</Link>
+                Contact Us
               </Button>
             </div>
           </nav>
