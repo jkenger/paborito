@@ -75,6 +75,14 @@ export function PartnerApplicationForm({ defaultType }: PartnerApplicationFormPr
     setPhone(formatPhoneNumber(e.target.value))
   }
 
+  const handlePartnerTypeChange = (value: string | null) => {
+    setPartnerType(value || "")
+  }
+
+  const handleRegionChange = (value: string | null) => {
+    setRegion(value || "")
+  }
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
@@ -91,9 +99,9 @@ export function PartnerApplicationForm({ defaultType }: PartnerApplicationFormPr
       {/* Partner Type */}
       <div className="space-y-2">
         <Label className="text-base font-semibold">Partnership Type <span className="text-destructive">*</span></Label>
-        <Select value={partnerType} onValueChange={setPartnerType} required>
+        <Select value={partnerType} onValueChange={handlePartnerTypeChange} required>
           <SelectTrigger className="w-full text-base py-5 px-4 h-auto rounded-md">
-            <SelectValue placeholder="Select partnership type" />
+            <SelectValue>{partnerType ? partnerTypes.find(t => t.value === partnerType)?.label : "Select partnership type"}</SelectValue>
           </SelectTrigger>
           <SelectContent>
             {partnerTypes.map((type) => (
@@ -146,9 +154,9 @@ export function PartnerApplicationForm({ defaultType }: PartnerApplicationFormPr
               required
               className="text-base py-5 px-4"
             />
-            <Select value={region} onValueChange={setRegion} required>
+            <Select value={region} onValueChange={handleRegionChange} required>
               <SelectTrigger className="w-full text-base py-5 px-4 h-auto rounded-md">
-                <SelectValue placeholder="Region / Province" />
+                <SelectValue>{region || "Region / Province"}</SelectValue>
               </SelectTrigger>
               <SelectContent>
                 {philippineRegions.map((r) => (
