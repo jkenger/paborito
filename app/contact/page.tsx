@@ -179,24 +179,41 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Map Placeholder */}
+      {/* Map Section */}
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-6">
           <FadeIn className="text-center mb-10">
             <h2 className="text-2xl md:text-3xl font-bold text-primary mb-3">
-              Find Us
+              Visit Our Office
             </h2>
             <p className="text-lg text-muted-foreground">
-              Visit our office or find a dealer near you
+              {siteConfig.contact.address}
             </p>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <div className="aspect-[21/9] bg-muted rounded-xl border-2 border-dashed border-muted-foreground/30 flex items-center justify-center">
-              <div className="text-center text-muted-foreground">
-                <span className="text-4xl block mb-2">🗺️</span>
-                <span className="text-lg">Map Placeholder</span>
-              </div>
+            <div className="aspect-[21/9] rounded-xl overflow-hidden shadow-lg">
+              <iframe
+                src="https://www.google.com/maps?q=14.480607,121.187931&z=17&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Paborito Office Location"
+                className="w-full h-full"
+              />
             </div>
+            <p className="text-center text-sm text-muted-foreground mt-4">
+              <a
+                href="https://www.google.com/maps?q=14.480607,121.187931"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-primary transition-colors underline underline-offset-2"
+              >
+                Open in Google Maps
+              </a>
+            </p>
           </FadeIn>
         </div>
       </section>

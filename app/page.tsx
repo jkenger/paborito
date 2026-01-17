@@ -92,6 +92,21 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Credentials Strip */}
+      <section className="bg-muted/50 border-y py-3">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+            <span className="font-medium text-foreground">Licensed & Registered:</span>
+            {siteConfig.registrations.map((reg, i) => (
+              <span key={i} className="flex items-center gap-1.5">
+                <span className="font-semibold text-primary">{reg.label}</span>
+                <span>{reg.number}</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Value Propositions */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-6">

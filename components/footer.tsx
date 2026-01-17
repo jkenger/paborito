@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { siteConfig, footerContent } from "@/lib/content"
+import { CertificateViewer } from "@/components/certificate-viewer"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -81,8 +82,24 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Registrations */}
+        <div className="border-t border-primary-foreground/20 pt-6 mb-6">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm opacity-70">
+            {siteConfig.registrations.map((reg, i) => (
+              <span key={i}>
+                {reg.fullName}: <span className="font-medium">{reg.number}</span>
+              </span>
+            ))}
+            <CertificateViewer
+              src="/images/bai-license.png"
+              alt="Bureau of Animal Industry - License to Operate (VDAPM-20-126)"
+              label="View BAI License"
+            />
+          </div>
+        </div>
+
         {/* Bottom Bar */}
-        <div className="border-t border-primary-foreground/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-5 text-base opacity-70">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-5 text-base opacity-70">
           <span>© {currentYear} Paborito Agribiotech Solutions, Corp. All rights reserved.</span>
           <div className="flex gap-6">
             {footerContent.legal.map((link) => (

@@ -9,13 +9,18 @@ export const siteConfig = {
   contact: {
     phone: "+63 XXX XXX XXXX",
     email: "info@paborito.ph",
-    address: "Address placeholder, Philippines",
+    address: "492 National Road, Barangay Calumpang, Binangonan, Rizal, Philippines",
   },
   social: {
     facebook: "#",
     instagram: "#",
     youtube: "#",
   },
+  registrations: [
+    { label: "SEC", number: "CS201820598", fullName: "Securities and Exchange Commission" },
+    { label: "BAI", number: "VDAPM-20-126", fullName: "Bureau of Animal Industry" },
+    { label: "BIR", number: "010-144-247", fullName: "Bureau of Internal Revenue" },
+  ],
 }
 
 export const navigation = [
