@@ -1,13 +1,42 @@
 "use client"
 
-import { useState } from "react"
+import { useState, ChangeEvent } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 
+function formatPhoneNumber(value: string): string {
+  // Remove all non-digits
+  let digits = value.replace(/\D/g, "")
+
+  // Remove leading 0 or 63 (country code)
+  if (digits.startsWith("63")) {
+    digits = digits.slice(2)
+  } else if (digits.startsWith("0")) {
+    digits = digits.slice(1)
+  }
+
+  // Limit to 10 digits
+  digits = digits.slice(0, 10)
+
+  // Format as XXX XXX XXXX
+  if (digits.length <= 3) {
+    return digits
+  } else if (digits.length <= 6) {
+    return `${digits.slice(0, 3)} ${digits.slice(3)}`
+  } else {
+    return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`
+  }
+}
+
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [phone, setPhone] = useState("")
+
+  const handlePhoneChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPhone(formatPhoneNumber(e.target.value))
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -48,13 +77,20 @@ export function ContactForm() {
       </div>
       <div className="space-y-2">
         <Label htmlFor="phone" className="text-base">Phone (Optional)</Label>
-        <Input
-          id="phone"
-          name="phone"
-          type="tel"
-          placeholder="+63 XXX XXX XXXX"
-          className="text-base py-5 px-4"
-        />
+        <div className="flex">
+          <span className="inline-flex items-center px-3 bg-muted border border-r-0 border-input text-muted-foreground text-sm rounded-l-md">
+            +63
+          </span>
+          <Input
+            id="phone"
+            name="phone"
+            type="tel"
+            placeholder="XXX XXX XXXX"
+            value={phone}
+            onChange={handlePhoneChange}
+            className="text-base py-5 px-4 rounded-l-none"
+          />
+        </div>
       </div>
       <div className="space-y-2">
         <Label htmlFor="message" className="text-base">Message</Label>

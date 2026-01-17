@@ -67,6 +67,8 @@ export interface Product {
   image: string | null // null = placeholder
   badge?: string
   features?: string[]
+  usage?: string
+  application?: string[]
 }
 
 export const products: Product[] = [
@@ -75,35 +77,59 @@ export const products: Product[] = [
     name: "Progastro",
     slug: "progastro",
     shortDescription: "Digestive health supplement for poultry",
-    description: "Our flagship digestive health supplement formulated to optimize gut health and nutrient absorption in poultry.",
+    description: "Our flagship digestive health supplement formulated to optimize gut health and nutrient absorption in poultry. Progastro contains a carefully balanced blend of beneficial bacteria and enzymes that work together to improve your flock's digestive efficiency, leading to better feed conversion and overall health.",
     image: null,
-    features: ["Improves digestion", "Enhances nutrient absorption", "Supports gut health"],
+    features: [
+      "Improves digestion and feed conversion",
+      "Enhances nutrient absorption",
+      "Supports healthy gut microbiome",
+      "Reduces digestive disorders",
+      "Suitable for all poultry types"
+    ],
+    usage: "Mix with feed or drinking water according to package instructions. Best results with consistent daily use.",
+    application: ["Layers", "Broilers", "Breeders"],
   },
   {
     id: "progastro-plus",
     name: "Progastro Plus",
     slug: "progastro-plus",
     shortDescription: "Advanced formula for maximum results",
-    description: "Enhanced formula with additional probiotics and vitamins for superior poultry health and productivity.",
+    description: "Enhanced formula with additional probiotics and vitamins for superior poultry health and productivity. Progastro Plus builds on our original formula with added immune-boosting ingredients and higher concentrations of beneficial bacteria for farms that demand the best results.",
     image: null,
     badge: "Best Seller",
-    features: ["Premium probiotics", "Added vitamins", "Maximum potency"],
+    features: [
+      "Premium probiotic blend",
+      "Added vitamins and minerals",
+      "Maximum potency formula",
+      "Boosts egg production",
+      "Strengthens immune system"
+    ],
+    usage: "Mix with feed or drinking water. Recommended for farms seeking premium results.",
+    application: ["Layers", "Broilers", "Breeders", "Native Chickens"],
   },
   {
     id: "odor-fly-powder",
     name: "Odor & Fly Powder",
     slug: "odor-fly-powder",
     shortDescription: "Farm hygiene solution",
-    description: "Effective powder formula to control odor and reduce fly populations in poultry farms.",
+    description: "Effective powder formula to control odor and reduce fly populations in poultry farms. This dual-action product neutralizes ammonia and other unpleasant odors while creating an environment that discourages fly breeding, improving both farm hygiene and worker comfort.",
     image: null,
-    features: ["Reduces odor", "Controls flies", "Safe for animals"],
+    features: [
+      "Reduces ammonia odor",
+      "Controls fly populations",
+      "Safe for animals and workers",
+      "Easy powder application",
+      "Long-lasting effectiveness"
+    ],
+    usage: "Sprinkle evenly on litter and floor areas. Reapply as needed based on conditions.",
+    application: ["Poultry Houses", "Litter Areas", "Manure Pits"],
   },
   {
     id: "product-4",
     name: "Product 4",
     slug: "product-4",
     shortDescription: "Brief description here",
-    description: "Product description placeholder.",
+    description: "Product description placeholder. More details coming soon.",
     image: null,
   },
   {
@@ -111,7 +137,7 @@ export const products: Product[] = [
     name: "Product 5",
     slug: "product-5",
     shortDescription: "Brief description here",
-    description: "Product description placeholder.",
+    description: "Product description placeholder. More details coming soon.",
     image: null,
   },
 ]
@@ -157,6 +183,58 @@ export const aboutContent = {
   ],
   cta: { label: "Learn Our Story", href: "/about" },
   image: null as string | null,
+}
+
+export const aboutPageContent = {
+  hero: {
+    title: "About Paborito",
+    subtitle: "Empowering Filipino poultry farmers with science-backed solutions since 2012",
+  },
+  story: {
+    title: "Our Story",
+    paragraphs: [
+      "Paborito Agribiotech Solutions, Corp. was founded in 2012 with a simple mission: to help Filipino poultry farmers achieve better results through scientifically formulated health supplements.",
+      "What started as a small operation has grown into a trusted name in the Philippine poultry industry, serving hundreds of farms across the country.",
+      "Our name 'Paborito' means 'favorite' in Filipino, and we strive every day to be the favorite choice of poultry farmers who demand quality and results.",
+    ],
+    image: null as string | null,
+  },
+  mission: {
+    title: "Our Mission",
+    content: "To empower Filipino poultry farmers with affordable, effective, and scientifically-formulated products that boost productivity and ensure healthier livestock.",
+  },
+  vision: {
+    title: "Our Vision",
+    content: "To be the leading provider of poultry health solutions in the Philippines, recognized for innovation, quality, and our commitment to farmer success.",
+  },
+  values: [
+    {
+      icon: "microscope",
+      title: "Science-Based",
+      description: "Every product is formulated based on scientific research and tested for effectiveness.",
+    },
+    {
+      icon: "handshake",
+      title: "Farmer-First",
+      description: "We prioritize the needs of Filipino farmers, offering practical solutions at fair prices.",
+    },
+    {
+      icon: "leaf",
+      title: "Quality Commitment",
+      description: "We never compromise on quality, using only the finest ingredients in our products.",
+    },
+    {
+      icon: "users",
+      title: "Local Pride",
+      description: "100% Filipino-owned and operated, supporting local agriculture and communities.",
+    },
+  ],
+  stats: [
+    { value: "2012", label: "Year Founded" },
+    { value: "500+", label: "Partner Farms" },
+    { value: "5", label: "Premium Products" },
+    { value: "12+", label: "Years of Service" },
+  ],
 }
 
 export const faqs = [
