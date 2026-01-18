@@ -125,6 +125,53 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   </div>
                 )}
 
+                {product.links && (product.links.shopee || product.links.lazada || product.links.tiktok) && (
+                  <div className="space-y-3">
+                    <h3 className="font-bold text-primary text-lg">Buy Online</h3>
+                    <div className="flex items-center gap-3">
+                      {product.links.shopee && (
+                        <a
+                          href={product.links.shopee}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#EE4D2D] text-white hover:opacity-80 transition-opacity text-sm font-medium"
+                        >
+                          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C8.74 2 6.17 4.53 6.02 7.75H5.5C3.57 7.75 2 9.32 2 11.25v7.5C2 20.68 3.57 22.25 5.5 22.25h13c1.93 0 3.5-1.57 3.5-3.5v-7.5c0-1.93-1.57-3.5-3.5-3.5h-.52C17.83 4.53 15.26 2 12 2zm0 1.5c2.35 0 4.32 1.72 4.48 4.25H7.52C7.68 5.22 9.65 3.5 12 3.5zm0 6.75c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z"/>
+                          </svg>
+                          Shopee
+                        </a>
+                      )}
+                      {product.links.lazada && (
+                        <a
+                          href={product.links.lazada}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#0F146D] text-white hover:opacity-80 transition-opacity text-sm font-medium"
+                        >
+                          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18l6.9 3.45L12 11.08 5.1 7.63 12 4.18zM4 8.82l7 3.5v7.36l-7-3.5V8.82zm9 10.86v-7.36l7-3.5v7.36l-7 3.5z"/>
+                          </svg>
+                          Lazada
+                        </a>
+                      )}
+                      {product.links.tiktok && (
+                        <a
+                          href={product.links.tiktok}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-4 py-2 rounded-full bg-black text-white hover:opacity-80 transition-opacity text-sm font-medium"
+                        >
+                          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.88 2.89 2.89 0 01-2.88-2.88 2.89 2.89 0 012.88-2.88c.28 0 .54.04.79.1V9.4a6.33 6.33 0 00-.79-.05A6.34 6.34 0 003.15 15.7a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V9.26a8.16 8.16 0 004.76 1.51V7.32a4.85 4.85 0 01-1-.63z"/>
+                          </svg>
+                          TikTok
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                )}
+
                 <div className="flex flex-wrap gap-4 pt-4">
                   <Button
                     render={<Link href="/contact" />}
@@ -199,7 +246,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </FadeIn>
             <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {relatedProducts.map((relatedProduct) => (
-                <StaggerItem key={relatedProduct.id}>
+                <StaggerItem key={relatedProduct.id} className="h-full">
                   <ProductCard product={relatedProduct} />
                 </StaggerItem>
               ))}

@@ -63,6 +63,12 @@ export const valuePropositions = [
   },
 ]
 
+export interface ProductLinks {
+  shopee?: string
+  lazada?: string
+  tiktok?: string
+}
+
 export interface Product {
   id: string
   name: string
@@ -74,6 +80,7 @@ export interface Product {
   features?: string[]
   usage?: string
   application?: string[]
+  links?: ProductLinks
 }
 
 export const products: Product[] = [
@@ -93,6 +100,11 @@ export const products: Product[] = [
     ],
     usage: "Mix with feed or drinking water according to package instructions. Best results with consistent daily use.",
     application: ["Layers", "Broilers", "Breeders"],
+    links: {
+      shopee: "#",
+      lazada: "#",
+      tiktok: "#",
+    },
   },
   {
     id: "progastro-plus",
@@ -111,6 +123,11 @@ export const products: Product[] = [
     ],
     usage: "Mix with feed or drinking water. Recommended for farms seeking premium results.",
     application: ["Layers", "Broilers", "Breeders", "Native Chickens"],
+    links: {
+      shopee: "#",
+      lazada: "#",
+      tiktok: "#",
+    },
   },
   {
     id: "odor-fly-powder",
@@ -128,6 +145,11 @@ export const products: Product[] = [
     ],
     usage: "Sprinkle evenly on litter and floor areas. Reapply as needed based on conditions.",
     application: ["Poultry Houses", "Litter Areas", "Manure Pits"],
+    links: {
+      shopee: "#",
+      lazada: "#",
+      tiktok: "#",
+    },
   },
   {
     id: "product-4",

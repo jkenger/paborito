@@ -187,7 +187,7 @@ export default function HomePage() {
           </FadeIn>
           <StaggerContainer className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
             {products.map((product) => (
-              <StaggerItem key={product.id}>
+              <StaggerItem key={product.id} className="h-full">
                 <ProductCard product={product} />
               </StaggerItem>
             ))}
