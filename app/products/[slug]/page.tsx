@@ -4,6 +4,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ProductCard } from "@/components/product-card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -82,12 +83,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <FadeIn delay={0.1}>
               <div className="space-y-6">
                 <div>
-                  <Link
-                    href="/products"
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-2 mb-4"
-                  >
-                    ← Back to Products
-                  </Link>
+                  <Breadcrumbs
+                    items={[
+                      { label: "Products", href: "/products" },
+                      { label: product.name },
+                    ]}
+                  />
                   <h1 className="text-4xl md:text-5xl font-bold text-primary mb-3">
                     {product.name}
                   </h1>

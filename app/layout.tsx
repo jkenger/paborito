@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
+import { BackToTop } from "@/components/back-to-top";
 import "./globals.css";
 
 const figtree = Figtree({
@@ -29,7 +30,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={figtree.variable}>
       <body className="font-sans antialiased">
+        <a href="#main-content" className="skip-to-content">
+          Skip to main content
+        </a>
         {children}
+        <BackToTop />
       </body>
     </html>
   );

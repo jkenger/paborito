@@ -128,7 +128,7 @@ export function PartnerApplicationForm({ defaultType }: PartnerApplicationFormPr
 
   if (isSuccess) {
     return (
-      <div className="text-center py-10">
+      <div className="text-center py-10" role="status" aria-live="polite">
         <div className="text-5xl mb-4">✓</div>
         <h3 className="text-xl font-bold text-primary mb-2">Application Submitted!</h3>
         <p className="text-muted-foreground">
@@ -141,7 +141,11 @@ export function PartnerApplicationForm({ defaultType }: PartnerApplicationFormPr
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {error && (
-        <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg text-destructive text-sm">
+        <div
+          className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg text-destructive text-sm"
+          role="alert"
+          aria-live="assertive"
+        >
           {error}
         </div>
       )}

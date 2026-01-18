@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Icon, IconCircle, IconName } from "@/components/icons";
 import {
   Accordion,
   AccordionContent,
@@ -158,11 +159,12 @@ export default function HomePage() {
                 <StaggerItem key={i}>
                   <Card className="p-6 hover:shadow-lg transition-shadow">
                     <CardContent className="p-0 flex items-start gap-5">
-                      <div className="text-4xl flex-shrink-0">
-                        {item.icon === "egg" && "🥚"}
-                        {item.icon === "shield" && "🛡️"}
-                        {item.icon === "trending-up" && "📈"}
-                      </div>
+                      <IconCircle
+                        name={item.icon as IconName}
+                        size="xl"
+                        bgClassName="bg-secondary/20"
+                        className="text-primary"
+                      />
                       <div>
                         <h3 className="font-bold text-primary text-lg mb-2">
                           {item.title}
@@ -318,18 +320,18 @@ export default function HomePage() {
             {/* Dealer Card */}
             <StaggerItem>
               <Card className="bg-white/10 border-white/20 text-primary-foreground h-full">
-                <CardContent className="p-8">
-                  <div className="text-4xl mb-4">🏪</div>
+                <CardContent className="p-8 text-center">
+                  <IconCircle name="store" size="xl" bgClassName="bg-secondary/20 mx-auto mb-4" className="text-primary" />
                   <h3 className="text-2xl font-bold mb-3">
                     {partnershipContent.dealer.title}
                   </h3>
                   <p className="text-base opacity-80 mb-5">
                     {partnershipContent.dealer.description}
                   </p>
-                  <ul className="space-y-3 text-base mb-8">
+                  <ul className="space-y-3 text-base mb-8 text-left">
                     {partnershipContent.dealer.benefits.map((item, i) => (
                       <li key={i} className="flex items-center gap-3">
-                        <span className="text-secondary">✓</span> {item}
+                        <Icon name="check" size="sm" className="text-secondary" /> {item}
                       </li>
                     ))}
                   </ul>
@@ -346,18 +348,18 @@ export default function HomePage() {
             {/* Partner Card */}
             <StaggerItem>
               <Card className="bg-white/10 border-white/20 text-primary-foreground h-full">
-                <CardContent className="p-8">
-                  <div className="text-4xl mb-4">🤝</div>
+                <CardContent className="p-8 text-center">
+                  <IconCircle name="handshake" size="xl" bgClassName="bg-secondary/20 mx-auto mb-4" className="text-primary" />
                   <h3 className="text-2xl font-bold mb-3">
                     {partnershipContent.partner.title}
                   </h3>
                   <p className="text-base opacity-80 mb-5">
                     {partnershipContent.partner.description}
                   </p>
-                  <ul className="space-y-3 text-base mb-8">
+                  <ul className="space-y-3 text-base mb-8 text-left">
                     {partnershipContent.partner.benefits.map((item, i) => (
                       <li key={i} className="flex items-center gap-3">
-                        <span className="text-secondary">✓</span> {item}
+                        <Icon name="check" size="sm" className="text-secondary" /> {item}
                       </li>
                     ))}
                   </ul>
@@ -388,7 +390,7 @@ export default function HomePage() {
               </p>
               <div className="space-y-5">
                 <div className="flex items-center gap-4">
-                  <span className="text-2xl">📍</span>
+                  <IconCircle name="location" size="lg" bgClassName="bg-secondary/20" className="text-primary" />
                   <span className="text-base">
                     {siteConfig.contact.address}
                   </span>
@@ -397,14 +399,14 @@ export default function HomePage() {
                   href={`tel:${siteConfig.contact.phone}`}
                   className="flex items-center gap-4 hover:text-primary transition-colors"
                 >
-                  <span className="text-2xl">📞</span>
+                  <IconCircle name="phone" size="lg" bgClassName="bg-secondary/20" className="text-primary" />
                   <span className="text-base">{siteConfig.contact.phone}</span>
                 </a>
                 <a
                   href={`mailto:${siteConfig.contact.email}`}
                   className="flex items-center gap-4 hover:text-primary transition-colors"
                 >
-                  <span className="text-2xl">✉️</span>
+                  <IconCircle name="mail" size="lg" bgClassName="bg-secondary/20" className="text-primary" />
                   <span className="text-base">{siteConfig.contact.email}</span>
                 </a>
               </div>

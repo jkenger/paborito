@@ -203,10 +203,10 @@ export const testimonials: Testimonial[] = [
 
 export const aboutContent = {
   badge: "About Us",
-  title: "Paborito Agribiotech Solutions, Corp.",
+  title: "Paborito Agribiotech Solutions Corporation",
   paragraphs: [
-    "Since 2012, we have been dedicated to providing Filipino poultry farmers with premium quality digestive health supplements...",
-    "Our mission is to empower local farmers with scientifically-formulated products that boost productivity and ensure healthier livestock.",
+    "A local agri-based company that promotes the use of natural and organic amendments as a safer and healthier alternative for raising poultry and other livestock animals.",
+    "We promote responsible and sustainable livestock farming, not only for the benefit of the raisers and farmers but, importantly, the end consumers.",
   ],
   cta: { label: "Learn Our Story", href: "/about" },
   image: null as string | null,

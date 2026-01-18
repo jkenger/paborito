@@ -164,3 +164,34 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Skip to content link - visible only on focus */
+.skip-to-content {
+  @apply absolute -top-12 left-4 z-[100] bg-primary text-primary-foreground px-4 py-2 rounded-md font-medium transition-all duration-200;
+}
+.skip-to-content:focus {
+  @apply top-4;
+}
+
+/* Enhanced focus states for accessibility */
+@layer base {
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  [tabindex]:focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+/* Back to top button */
+.back-to-top {
+  @apply fixed bottom-6 right-6 z-50 w-12 h-12 bg-primary text-primary-foreground rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:bg-primary/90 hover:scale-110;
+}
+.back-to-top[data-visible="false"] {
+  @apply opacity-0 pointer-events-none translate-y-4;
+}
+.back-to-top[data-visible="true"] {
+  @apply opacity-100 translate-y-0;
+}

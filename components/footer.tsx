@@ -1,6 +1,9 @@
 import Link from "next/link"
+import { Facebook01Icon, InstagramIcon, YoutubeIcon } from "@hugeicons/core-free-icons"
+import { HugeiconsIcon } from "@hugeicons/react"
 import { siteConfig, footerContent } from "@/lib/content"
 import { CertificateViewer } from "@/components/certificate-viewer"
+import { NewsletterSignup } from "@/components/newsletter-signup"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -50,33 +53,37 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Social */}
+          {/* Newsletter & Social */}
           <div>
-            <h4 className="font-bold text-lg mb-4">Follow Us</h4>
-            <div className="flex gap-4">
+            <h4 className="font-bold text-lg mb-4">Stay Updated</h4>
+            <NewsletterSignup />
+            <div className="flex gap-4 mt-6">
               <a
                 href={siteConfig.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-secondary/20 rounded flex items-center justify-center hover:bg-secondary/30 transition-colors text-base"
+                aria-label="Facebook"
+                className="w-10 h-10 bg-secondary/20 rounded-full flex items-center justify-center hover:bg-secondary/30 transition-colors"
               >
-                FB
+                <HugeiconsIcon icon={Facebook01Icon} className="w-5 h-5" />
               </a>
               <a
                 href={siteConfig.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-secondary/20 rounded flex items-center justify-center hover:bg-secondary/30 transition-colors text-base"
+                aria-label="Instagram"
+                className="w-10 h-10 bg-secondary/20 rounded-full flex items-center justify-center hover:bg-secondary/30 transition-colors"
               >
-                IG
+                <HugeiconsIcon icon={InstagramIcon} className="w-5 h-5" />
               </a>
               <a
                 href={siteConfig.social.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-secondary/20 rounded flex items-center justify-center hover:bg-secondary/30 transition-colors text-base"
+                aria-label="YouTube"
+                className="w-10 h-10 bg-secondary/20 rounded-full flex items-center justify-center hover:bg-secondary/30 transition-colors"
               >
-                YT
+                <HugeiconsIcon icon={YoutubeIcon} className="w-5 h-5" />
               </a>
             </div>
           </div>

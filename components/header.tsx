@@ -2,11 +2,20 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { Call02Icon, Mail01Icon, Location01Icon } from "@hugeicons/core-free-icons"
+import { HugeiconsIcon } from "@hugeicons/react"
 import { Button } from "@/components/ui/button"
 import { siteConfig, navigation } from "@/lib/content"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const pathname = usePathname()
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/"
+    return pathname.startsWith(href)
+  }
 
   return (
     <>
@@ -16,16 +25,16 @@ export function Header() {
           <div className="flex flex-wrap items-center justify-center md:justify-between gap-x-8 gap-y-1">
             <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-1">
               <a href={`tel:${siteConfig.contact.phone}`} className="flex items-center gap-2 hover:opacity-80">
-                <span>📞</span>
+                <HugeiconsIcon icon={Call02Icon} className="w-4 h-4" />
                 <span>{siteConfig.contact.phone}</span>
               </a>
               <a href={`mailto:${siteConfig.contact.email}`} className="hidden sm:flex items-center gap-2 hover:opacity-80">
-                <span>✉️</span>
+                <HugeiconsIcon icon={Mail01Icon} className="w-4 h-4" />
                 <span>{siteConfig.contact.email}</span>
               </a>
             </div>
             <span className="hidden md:flex items-center gap-2">
-              <span>📍</span>
+              <HugeiconsIcon icon={Location01Icon} className="w-4 h-4" />
               <span>{siteConfig.contact.address}</span>
             </span>
           </div>
@@ -49,13 +58,14 @@ export function Header() {
 
             {/* Desktop Nav Links */}
             <nav className="hidden md:flex items-center gap-2">
-              {navigation.map((item, i) => (
+              {navigation.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
+                  aria-current={isActive(item.href) ? "page" : undefined}
                   className={`px-4 py-2.5 text-base rounded-md transition-colors ${
-                    i === 0
-                      ? "text-primary font-medium"
+                    isActive(item.href)
+                      ? "text-primary font-medium bg-secondary/20"
                       : "text-muted-foreground hover:text-primary hover:bg-muted/50"
                   }`}
                 >
@@ -107,14 +117,15 @@ export function Header() {
           }`}
         >
           <nav className="container mx-auto px-6 pb-6 space-y-2">
-            {navigation.map((item, i) => (
+            {navigation.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
+                aria-current={isActive(item.href) ? "page" : undefined}
                 className={`block px-4 py-3 text-lg rounded-md transition-colors ${
-                  i === 0
-                    ? "text-primary font-medium bg-muted/50"
+                  isActive(item.href)
+                    ? "text-primary font-medium bg-secondary/20"
                     : "text-muted-foreground hover:text-primary hover:bg-muted/50"
                 }`}
               >
