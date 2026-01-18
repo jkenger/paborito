@@ -10,7 +10,7 @@ import { aboutPageContent, siteConfig } from "@/lib/content"
 
 export const metadata: Metadata = {
   title: `About Us | ${siteConfig.name}`,
-  description: "Learn about Paborito Agribiotech Solutions - a 100% Filipino-owned company providing premium poultry health supplements since 2012.",
+  description: "Learn about Paborito Agribiotech Solutions Corporation - promoting natural and organic alternatives for healthier and more sustainable livestock farming.",
 }
 
 export default function AboutPage() {
@@ -78,9 +78,48 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Mission & Vision */}
+      {/* Company Principles */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-6">
+          <FadeIn className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+              Company Principles
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Our guiding commitments to livestock farmers
+            </p>
+          </FadeIn>
+
+          <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {aboutPageContent.principles.map((principle, i) => (
+              <StaggerItem key={i}>
+                <Card className="p-6 h-full hover:shadow-lg transition-shadow">
+                  <CardContent className="p-0">
+                    <div className="w-10 h-10 bg-secondary text-primary rounded-full flex items-center justify-center font-bold text-lg mb-4">
+                      {i + 1}
+                    </div>
+                    <p className="text-base text-muted-foreground leading-relaxed">
+                      {principle}
+                    </p>
+                  </CardContent>
+                </Card>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* Mission & Vision */}
+      <section className="py-20">
+        <div className="container mx-auto px-6">
+          <FadeIn className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+              Mission & Vision
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Our purpose and aspiration for the future
+            </p>
+          </FadeIn>
           <StaggerContainer className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <StaggerItem>
               <Card className="p-8 h-full">
@@ -89,9 +128,14 @@ export default function AboutPage() {
                   <h3 className="text-2xl font-bold text-primary mb-4">
                     {aboutPageContent.mission.title}
                   </h3>
-                  <p className="text-lg text-muted-foreground leading-relaxed">
-                    {aboutPageContent.mission.content}
-                  </p>
+                  <ul className="space-y-3">
+                    {aboutPageContent.mission.points.map((point, i) => (
+                      <li key={i} className="flex items-start gap-3 text-base text-muted-foreground">
+                        <span className="text-secondary font-bold">•</span>
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </CardContent>
               </Card>
             </StaggerItem>
@@ -102,7 +146,7 @@ export default function AboutPage() {
                   <h3 className="text-2xl font-bold text-primary mb-4">
                     {aboutPageContent.vision.title}
                   </h3>
-                  <p className="text-lg text-muted-foreground leading-relaxed">
+                  <p className="text-base text-muted-foreground leading-relaxed">
                     {aboutPageContent.vision.content}
                   </p>
                 </CardContent>
@@ -113,14 +157,14 @@ export default function AboutPage() {
       </section>
 
       {/* Our Values */}
-      <section className="py-20">
+      <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-6">
           <FadeIn className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-              Our Values
+              Core Values
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              The principles that guide everything we do
+              The foundation of our commitment to farmers and consumers
             </p>
           </FadeIn>
 
@@ -138,7 +182,7 @@ export default function AboutPage() {
                     <h3 className="text-lg font-bold text-primary mb-2">
                       {value.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-base text-muted-foreground">
                       {value.description}
                     </p>
                   </CardContent>
@@ -153,11 +197,11 @@ export default function AboutPage() {
       <section className="py-16 bg-primary text-primary-foreground">
         <div className="container mx-auto px-6">
           <FadeIn className="text-center max-w-2xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Partner With Us
             </h2>
             <p className="text-lg text-primary-foreground/80 mb-8">
-              Join hundreds of Filipino farmers who trust Paborito for their poultry health needs.
+              Join over 500 Filipino farmers who trust Paborito for healthier and more sustainable livestock farming.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button

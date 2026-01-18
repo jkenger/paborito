@@ -215,45 +215,59 @@ export const aboutContent = {
 export const aboutPageContent = {
   hero: {
     title: "About Paborito",
-    subtitle: "Empowering Filipino poultry farmers with science-backed solutions since 2012",
+    subtitle: "Promoting natural and organic alternatives for healthier and more sustainable livestock farming",
   },
   story: {
-    title: "Our Story",
+    title: "Company Profile",
     paragraphs: [
-      "Paborito Agribiotech Solutions, Corp. was founded in 2012 with a simple mission: to help Filipino poultry farmers achieve better results through scientifically formulated health supplements.",
-      "What started as a small operation has grown into a trusted name in the Philippine poultry industry, serving hundreds of farms across the country.",
-      "Our name 'Paborito' means 'favorite' in Filipino, and we strive every day to be the favorite choice of poultry farmers who demand quality and results.",
+      "Paborito Agribiotech Solutions Corporation is a local agri-based company that promotes the use of natural and organic amendments as a safer and healthier alternative for raising poultry and other livestock animals. We promote responsible and sustainable livestock farming, not only for the benefit of the raisers and farmers but, importantly, the end consumers.",
+      "During the last three decades, poultry and other meat animals have been bombarded with antibiotics not for the purpose of curing illness but as growth promoters. Studies have shown that irresponsible use of antibiotics on animals farmed for food has ill effects on human health and the environment.",
+      "The key people behind Paborito Agribiotech Solutions Corporation are men of integrity with a great passion for poultry and livestock farming. The list of customers of the company can vouch for the quality and performance of the products we offer to our valued customers.",
+      "With the mastery of the business, the company is prepared to face the new millennium and is confident of continuing its quality of service and commitment as \"Alagang Paborito, Kaagapay mo sa Pag-asenso.\"",
     ],
     image: null as string | null,
   },
+  principles: [
+    "To increase profitability for livestock farmers focusing on flock illness prevention.",
+    "To improve animal performance on growth, harvest rate, feed conversion ratio, breeding and laying production efficiency.",
+    "To boost the natural immune system of animals by enhancing gut health and integrity.",
+    "To enhance appetite, feed and other health-boosting supplement utilization, digestion, nutrient absorption and conversion.",
+    "To address fly, odor, and environmental pollution issues in livestock farming.",
+  ],
   mission: {
-    title: "Our Mission",
-    content: "To empower Filipino poultry farmers with affordable, effective, and scientifically-formulated products that boost productivity and ensure healthier livestock.",
+    title: "Corporate Mission",
+    points: [
+      "Efficient feed digestion and nutrient absorption",
+      "Superior flock health and minimal mortality",
+      "Faster growth and uniformity of sizes relative to age",
+      "Higher egg production efficiency for poultry",
+      "Lesser odor and flies' issues due to efficient feed digestion and nutrient absorption",
+    ],
   },
   vision: {
-    title: "Our Vision",
-    content: "To be the leading provider of poultry health solutions in the Philippines, recognized for innovation, quality, and our commitment to farmer success.",
+    title: "Corporate Vision",
+    content: "To be one of the major players in the Philippines in providing livestock farmers quality, sustainable, healthier and safer alternative supplements and amendments specific to their needs for better livestock health and profitability by 2024.",
   },
   values: [
     {
-      icon: "microscope",
-      title: "Science-Based",
-      description: "Every product is formulated based on scientific research and tested for effectiveness.",
+      icon: "leaf",
+      title: "Natural & Organic",
+      description: "We promote natural and organic amendments as safer alternatives to synthetic additives and antibiotics.",
     },
     {
       icon: "handshake",
-      title: "Farmer-First",
-      description: "We prioritize the needs of Filipino farmers, offering practical solutions at fair prices.",
+      title: "Integrity",
+      description: "Our team operates with honesty and passion, building trust through quality products and reliable service.",
     },
     {
-      icon: "leaf",
-      title: "Quality Commitment",
-      description: "We never compromise on quality, using only the finest ingredients in our products.",
+      icon: "microscope",
+      title: "Sustainability",
+      description: "We champion responsible farming practices that benefit farmers, consumers, and the environment.",
     },
     {
       icon: "users",
-      title: "Local Pride",
-      description: "100% Filipino-owned and operated, supporting local agriculture and communities.",
+      title: "Consumer Health",
+      description: "We prioritize the health of end consumers by ensuring livestock are raised without harmful substances.",
     },
   ],
   stats: [

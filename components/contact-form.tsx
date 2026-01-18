@@ -32,6 +32,8 @@ function formatPhoneNumber(value: string): string {
 
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
+  const [error, setError] = useState("")
   const [phone, setPhone] = useState("")
 
   const handlePhoneChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -41,17 +43,55 @@ export function ContactForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError("")
 
-    // TODO: Implement form submission
-    // For now, just simulate a delay
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    const formData = new FormData(e.currentTarget)
+    const data = {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      phone: phone,
+      message: formData.get("message") as string,
+    }
 
-    setIsSubmitting(false)
-    alert("Thank you for your message! We will get back to you soon.")
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+
+      if (!response.ok) {
+        const result = await response.json()
+        throw new Error(result.error || "Failed to send message")
+      }
+
+      setIsSuccess(true)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  if (isSuccess) {
+    return (
+      <div className="text-center py-10">
+        <div className="text-5xl mb-4">✓</div>
+        <h3 className="text-xl font-bold text-primary mb-2">Message Sent!</h3>
+        <p className="text-muted-foreground">
+          Thank you for reaching out. We&apos;ll get back to you soon.
+        </p>
+      </div>
+    )
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+      {error && (
+        <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg text-destructive text-sm">
+          {error}
+        </div>
+      )}
       <div className="grid sm:grid-cols-2 gap-5">
         <div className="space-y-2">
           <Label htmlFor="name" className="text-base">Name</Label>

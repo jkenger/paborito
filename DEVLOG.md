@@ -8,6 +8,41 @@
 
 ---
 
+## 2026-01-18 | Form Backend & UI Polish
+
+### Session 4: Resend Email Integration
+
+**Email Service Setup:**
+- Installed Resend package for email delivery
+- Created API routes for form submissions
+- Nicely formatted HTML email templates
+
+**API Routes Created:**
+| Route | Purpose |
+|-------|---------|
+| `/api/contact` | Contact form submissions |
+| `/api/partner-application` | Dealer/Distributor/Reseller applications |
+
+**Form Updates:**
+- Contact form: Success state, error handling, API submission
+- Partner application form: Success state, error handling, API submission
+- Both forms show success message after submission
+- Error messages displayed inline
+
+**Environment Variables Required:**
+```
+RESEND_API_KEY=re_xxxxx
+CONTACT_EMAIL=info@paborito.ph
+PARTNER_EMAIL=partners@paborito.ph
+```
+
+**UI Updates:**
+- Product cards: Consistent heights, description truncation (2-line limit with ellipsis)
+- Added e-commerce links (Shopee, Lazada, TikTok) to product cards and detail pages
+- Platform-branded icons with proper colors
+
+---
+
 ## 2026-01-17 | Inner Pages & Forms
 
 ### Session 3: Inner Pages Complete
@@ -122,6 +157,8 @@
 
 **See:** [`docs/brand-guidelines.md`](./docs/brand-guidelines.md)
 
+**Email Setup:** [`docs/email-setup.md`](./docs/email-setup.md)
+
 ### Wireframes Created
 - `/wireframe` - Dynamic layout with floating products (APPROVED)
 - `/wireframe-2` - Clean/focused alternate design
@@ -149,7 +186,7 @@
 ## Next Steps
 
 - [x] Inner pages (Products, About, Contact, Dealers)
-- [ ] Form backend (email service integration)
+- [x] Form backend (email service integration)
 - [ ] Replace placeholders with real assets
 - [ ] Final content updates
 - [ ] Performance optimization
@@ -170,6 +207,9 @@ paborito/
 │   ├── products/
 │   │   ├── page.tsx            # Products catalog
 │   │   └── [slug]/page.tsx     # Product detail pages
+│   ├── api/
+│   │   ├── contact/route.ts    # Contact form API
+│   │   └── partner-application/route.ts  # Partner form API
 │   ├── wireframe/page.tsx      # Original wireframe (preserved)
 │   └── wireframe-2/page.tsx    # Alternate wireframe
 ├── components/
@@ -191,7 +231,8 @@ paborito/
 │   └── images/
 │       └── bai-license.png     # BAI License certificate
 ├── docs/
-│   └── brand-guidelines.md     # Brand colors, typography, etc.
+│   ├── brand-guidelines.md     # Brand colors, typography, etc.
+│   └── email-setup.md          # Resend email configuration guide
 └── DEVLOG.md                   # This file
 ```
 

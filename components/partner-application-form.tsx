@@ -67,6 +67,8 @@ interface PartnerApplicationFormProps {
 
 export function PartnerApplicationForm({ defaultType }: PartnerApplicationFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
+  const [error, setError] = useState("")
   const [partnerType, setPartnerType] = useState(defaultType || "")
   const [region, setRegion] = useState("")
   const [phone, setPhone] = useState("")
@@ -86,16 +88,64 @@ export function PartnerApplicationForm({ defaultType }: PartnerApplicationFormPr
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError("")
 
-    // TODO: Implement form submission
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    const formData = new FormData(e.currentTarget)
+    const data = {
+      partnerType,
+      firstName: formData.get("firstName") as string,
+      lastName: formData.get("lastName") as string,
+      street: formData.get("street") as string,
+      addressLine1: formData.get("addressLine1") as string,
+      city: formData.get("city") as string,
+      region,
+      postalCode: formData.get("postalCode") as string,
+      phone,
+      email: formData.get("email") as string,
+      areaOfDistribution: formData.get("areaOfDistribution") as string,
+      notes: formData.get("notes") as string,
+    }
 
-    setIsSubmitting(false)
-    alert("Thank you for your application! We will review your details and contact you within 3-5 business days.")
+    try {
+      const response = await fetch("/api/partner-application", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+
+      if (!response.ok) {
+        const result = await response.json()
+        throw new Error(result.error || "Failed to submit application")
+      }
+
+      setIsSuccess(true)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  if (isSuccess) {
+    return (
+      <div className="text-center py-10">
+        <div className="text-5xl mb-4">✓</div>
+        <h3 className="text-xl font-bold text-primary mb-2">Application Submitted!</h3>
+        <p className="text-muted-foreground">
+          Thank you for your interest in partnering with Paborito. We&apos;ll review your application and contact you within 3-5 business days.
+        </p>
+      </div>
+    )
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      {error && (
+        <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg text-destructive text-sm">
+          {error}
+        </div>
+      )}
+
       {/* Partner Type */}
       <div className="space-y-2">
         <Label className="text-base font-semibold">Partnership Type <span className="text-destructive">*</span></Label>
