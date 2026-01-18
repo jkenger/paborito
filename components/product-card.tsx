@@ -58,55 +58,59 @@ export function ProductCard({ product }: ProductCardProps) {
         )}
       </div>
       <CardContent className="p-5 flex flex-col flex-1">
-        <h3 className="font-bold text-primary text-base mb-2">{product.name}</h3>
-        <p className="text-sm text-muted-foreground mb-4 line-clamp-2">{product.shortDescription}</p>
+        <div className="flex-1">
+          <h3 className="font-bold text-primary text-base mb-2">{product.name}</h3>
+          <p className="text-sm text-muted-foreground line-clamp-2">{product.shortDescription}</p>
+        </div>
 
-        {hasLinks && (
-          <div className="flex items-center justify-center gap-3 mb-4">
-            {product.links?.shopee && (
-              <a
-                href={product.links.shopee}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full bg-[#EE4D2D] flex items-center justify-center text-white hover:opacity-80 transition-opacity"
-                title="Buy on Shopee"
-              >
-                <ShopeeIcon className="w-4 h-4" />
-              </a>
-            )}
-            {product.links?.lazada && (
-              <a
-                href={product.links.lazada}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full bg-[#0F146D] flex items-center justify-center text-white hover:opacity-80 transition-opacity"
-                title="Buy on Lazada"
-              >
-                <LazadaIcon className="w-4 h-4" />
-              </a>
-            )}
-            {product.links?.tiktok && (
-              <a
-                href={product.links.tiktok}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full bg-black flex items-center justify-center text-white hover:opacity-80 transition-opacity"
-                title="Buy on TikTok Shop"
-              >
-                <TiktokIcon className="w-4 h-4" />
-              </a>
-            )}
-          </div>
-        )}
+        <div className="mt-4">
+          {hasLinks && (
+            <div className="flex items-center justify-center gap-3 mb-4">
+              {product.links?.shopee && (
+                <a
+                  href={product.links.shopee}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-full bg-[#EE4D2D] flex items-center justify-center text-white hover:opacity-80 transition-opacity"
+                  title="Buy on Shopee"
+                >
+                  <ShopeeIcon className="w-4 h-4" />
+                </a>
+              )}
+              {product.links?.lazada && (
+                <a
+                  href={product.links.lazada}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-full bg-[#0F146D] flex items-center justify-center text-white hover:opacity-80 transition-opacity"
+                  title="Buy on Lazada"
+                >
+                  <LazadaIcon className="w-4 h-4" />
+                </a>
+              )}
+              {product.links?.tiktok && (
+                <a
+                  href={product.links.tiktok}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-full bg-black flex items-center justify-center text-white hover:opacity-80 transition-opacity"
+                  title="Buy on TikTok Shop"
+                >
+                  <TiktokIcon className="w-4 h-4" />
+                </a>
+              )}
+            </div>
+          )}
 
-        <Button
-          render={<Link href={`/products/${product.slug}`} />}
-          size="sm"
-          variant="outline"
-          className="w-full text-sm py-4 mt-auto"
-        >
-          Learn More
-        </Button>
+          <Button
+            render={<Link href={`/products/${product.slug}`} />}
+            size="sm"
+            variant="outline"
+            className="w-full text-sm py-4"
+          >
+            Learn More
+          </Button>
+        </div>
       </CardContent>
     </Card>
   )

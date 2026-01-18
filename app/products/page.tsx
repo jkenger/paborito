@@ -58,25 +58,15 @@ export default function ProductsPage() {
               Ready to Order?
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
-              Contact us for pricing, bulk orders, or to find a dealer near you.
+              Contact us for pricing, bulk orders, or product inquiries.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button
-                render={<Link href="/contact" />}
-                size="lg"
-                className="bg-destructive hover:bg-destructive/90 text-white text-base px-8 py-6"
-              >
-                Contact Us
-              </Button>
-              <Button
-                render={<Link href="/dealers" />}
-                size="lg"
-                variant="outline"
-                className="text-base px-8 py-6"
-              >
-                Find a Dealer
-              </Button>
-            </div>
+            <Button
+              render={<Link href="/contact" />}
+              size="lg"
+              className="bg-destructive hover:bg-destructive/90 text-white text-base px-8 py-6"
+            >
+              Contact Us
+            </Button>
           </FadeIn>
         </div>
       </section>

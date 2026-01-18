@@ -172,21 +172,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   </div>
                 )}
 
-                <div className="flex flex-wrap gap-4 pt-4">
+                <div className="pt-4">
                   <Button
                     render={<Link href="/contact" />}
                     size="lg"
                     className="bg-destructive hover:bg-destructive/90 text-white text-base px-8 py-6"
                   >
                     Inquire Now
-                  </Button>
-                  <Button
-                    render={<Link href="/dealers" />}
-                    size="lg"
-                    variant="outline"
-                    className="text-base px-8 py-6"
-                  >
-                    Find a Dealer
                   </Button>
                 </div>
               </div>

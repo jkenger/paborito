@@ -1,9 +1,15 @@
 import { Metadata } from "next"
 import Link from "next/link"
+import dynamic from "next/dynamic"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { PartnerApplicationForm } from "@/components/partner-application-form"
 import { Button } from "@/components/ui/button"
+
+// Lazy load form component
+const PartnerApplicationForm = dynamic(
+  () => import("@/components/partner-application-form").then((mod) => mod.PartnerApplicationForm),
+  { loading: () => <div className="h-96 animate-pulse bg-muted rounded-lg" /> }
+)
 import { Card, CardContent } from "@/components/ui/card"
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion"
 import { siteConfig } from "@/lib/content"

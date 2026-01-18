@@ -1,4 +1,5 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,10 +13,15 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ProductCard } from "@/components/product-card";
 import { TestimonialCard } from "@/components/testimonial-card";
-import { ContactForm } from "@/components/contact-form";
 import { ImagePlaceholder } from "@/components/image-placeholder";
 import { FloatingProducts } from "@/components/floating-products";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
+
+// Lazy load below-fold components
+const ContactForm = dynamic(
+  () => import("@/components/contact-form").then((mod) => mod.ContactForm),
+  { loading: () => <div className="h-64 animate-pulse bg-muted rounded-lg" /> }
+);
 import {
   siteConfig,
   heroContent,
