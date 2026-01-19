@@ -12,6 +12,7 @@ const ContactForm = dynamic(
 )
 import { Card, CardContent } from "@/components/ui/card"
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion"
+import { IconCircle, IconName } from "@/components/icons"
 import { siteConfig } from "@/lib/content"
 
 export const metadata: Metadata = {
@@ -19,45 +20,45 @@ export const metadata: Metadata = {
   description: "Get in touch with Paborito Agribiotech Solutions. Contact us for product inquiries, orders, dealer information, or partnership opportunities.",
 }
 
-const contactMethods = [
+const contactMethods: { icon: IconName; title: string; content: string; action: string | null }[] = [
   {
-    icon: "📍",
+    icon: "location",
     title: "Visit Us",
     content: siteConfig.contact.address,
     action: null,
   },
   {
-    icon: "📞",
+    icon: "phone",
     title: "Call Us",
     content: siteConfig.contact.phone,
     action: `tel:${siteConfig.contact.phone}`,
   },
   {
-    icon: "✉️",
+    icon: "mail",
     title: "Email Us",
     content: siteConfig.contact.email,
     action: `mailto:${siteConfig.contact.email}`,
   },
 ]
 
-const inquiryTypes = [
+const inquiryTypes: { icon: IconName; title: string; description: string }[] = [
   {
-    icon: "🛒",
+    icon: "cart",
     title: "Product Inquiries",
     description: "Questions about our products, usage, or pricing",
   },
   {
-    icon: "📦",
+    icon: "package",
     title: "Bulk Orders",
     description: "Special pricing for large farm operations",
   },
   {
-    icon: "🔧",
+    icon: "support",
     title: "Technical Support",
     description: "Help with product application or dosage",
   },
   {
-    icon: "💬",
+    icon: "message",
     title: "General Questions",
     description: "Any other questions or feedback",
   },
@@ -98,7 +99,7 @@ export default function ContactPage() {
                     href={method.action}
                     className="flex items-center gap-4 p-4 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
                   >
-                    <span className="text-3xl">{method.icon}</span>
+                    <IconCircle name={method.icon} size="lg" bgClassName="bg-white/20" className="text-secondary" />
                     <div>
                       <div className="font-bold">{method.title}</div>
                       <div className="text-sm opacity-80">{method.content}</div>
@@ -106,7 +107,7 @@ export default function ContactPage() {
                   </a>
                 ) : (
                   <div className="flex items-center gap-4 p-4 rounded-lg bg-white/10">
-                    <span className="text-3xl">{method.icon}</span>
+                    <IconCircle name={method.icon} size="lg" bgClassName="bg-white/20" className="text-secondary" />
                     <div>
                       <div className="font-bold">{method.title}</div>
                       <div className="text-sm opacity-80">{method.content}</div>
@@ -153,7 +154,7 @@ export default function ContactPage() {
                   {inquiryTypes.map((type, i) => (
                     <Card key={i} className="p-5 hover:shadow-md transition-shadow">
                       <CardContent className="p-0 flex items-start gap-4">
-                        <span className="text-3xl">{type.icon}</span>
+                        <IconCircle name={type.icon} size="lg" bgClassName="bg-secondary/20" className="text-primary" />
                         <div>
                           <h3 className="font-bold text-primary mb-1">{type.title}</h3>
                           <p className="text-sm text-muted-foreground">{type.description}</p>
@@ -166,7 +167,7 @@ export default function ContactPage() {
                 {/* Dealer CTA */}
                 <Card className="mt-6 p-5 bg-primary text-primary-foreground">
                   <CardContent className="p-0 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                    <span className="text-3xl">🏪</span>
+                    <IconCircle name="store" size="lg" bgClassName="bg-white/20" className="text-secondary" />
                     <div className="flex-1">
                       <h3 className="font-bold mb-1">Become a Dealer or Distributor?</h3>
                       <p className="text-sm opacity-80">Apply through our dedicated partnership form.</p>

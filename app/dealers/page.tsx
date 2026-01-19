@@ -12,6 +12,7 @@ const PartnerApplicationForm = dynamic(
 )
 import { Card, CardContent } from "@/components/ui/card"
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion"
+import { Icon, IconCircle, IconName } from "@/components/icons"
 import { siteConfig } from "@/lib/content"
 
 export const metadata: Metadata = {
@@ -19,34 +20,34 @@ export const metadata: Metadata = {
   description: "Join the Paborito dealer network. Sell premium poultry health supplements in your area with exclusive territory rights and competitive margins.",
 }
 
-const dealerBenefits = [
+const dealerBenefits: { icon: IconName; title: string; description: string }[] = [
   {
-    icon: "💰",
+    icon: "money",
     title: "Competitive Margins",
     description: "Earn attractive profits with our dealer pricing structure designed for sustainable business growth.",
   },
   {
-    icon: "📍",
+    icon: "territory",
     title: "Territory Rights",
     description: "Get exclusive rights to sell Paborito products in your designated area.",
   },
   {
-    icon: "📚",
+    icon: "training",
     title: "Training & Support",
     description: "Receive comprehensive product training and ongoing sales support from our team.",
   },
   {
-    icon: "📦",
+    icon: "package",
     title: "Marketing Materials",
     description: "Access to promotional materials, product samples, and marketing support.",
   },
   {
-    icon: "🚚",
+    icon: "delivery",
     title: "Reliable Supply",
     description: "Consistent product availability with efficient ordering and delivery systems.",
   },
   {
-    icon: "📈",
+    icon: "growth",
     title: "Growth Potential",
     description: "Tap into the growing poultry industry with products trusted by hundreds of farms.",
   },
@@ -124,7 +125,7 @@ export default function DealersPage() {
               <StaggerItem key={i}>
                 <Card className="p-6 h-full hover:shadow-lg transition-shadow">
                   <CardContent className="p-0">
-                    <div className="text-4xl mb-4">{benefit.icon}</div>
+                    <IconCircle name={benefit.icon} size="xl" bgClassName="bg-secondary/20 mb-4" className="text-primary" />
                     <h3 className="text-lg font-bold text-primary mb-2">
                       {benefit.title}
                     </h3>
@@ -187,7 +188,7 @@ export default function DealersPage() {
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
                 {requirements.map((req, i) => (
                   <div key={i} className="flex items-start gap-3 p-4 bg-muted/50 rounded-lg">
-                    <span className="text-secondary text-lg mt-0.5">✓</span>
+                    <Icon name="check" size="md" className="text-secondary shrink-0 mt-0.5" />
                     <span className="text-sm text-muted-foreground">{req}</span>
                   </div>
                 ))}
@@ -227,7 +228,7 @@ export default function DealersPage() {
             <Card className="p-8">
               <CardContent className="p-0">
                 <div className="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
-                  <div className="text-5xl">💬</div>
+                  <IconCircle name="message" size="xl" bgClassName="bg-secondary/20" className="text-primary" />
                   <div className="flex-1">
                     <h3 className="text-xl font-bold text-primary mb-2">
                       Not Sure Which Partnership is Right for You?

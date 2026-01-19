@@ -6,6 +6,7 @@ import { ImagePlaceholder } from "@/components/image-placeholder"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion"
+import { IconCircle, IconName } from "@/components/icons"
 import { aboutPageContent, siteConfig } from "@/lib/content"
 
 export const metadata: Metadata = {
@@ -124,7 +125,7 @@ export default function AboutPage() {
             <StaggerItem>
               <Card className="p-8 h-full">
                 <CardContent className="p-0">
-                  <div className="text-4xl mb-4">🎯</div>
+                  <IconCircle name="target" size="xl" bgClassName="bg-secondary/20 mb-4" className="text-primary" />
                   <h3 className="text-2xl font-bold text-primary mb-4">
                     {aboutPageContent.mission.title}
                   </h3>
@@ -142,7 +143,7 @@ export default function AboutPage() {
             <StaggerItem>
               <Card className="p-8 h-full">
                 <CardContent className="p-0">
-                  <div className="text-4xl mb-4">🔭</div>
+                  <IconCircle name="telescope" size="xl" bgClassName="bg-secondary/20 mb-4" className="text-primary" />
                   <h3 className="text-2xl font-bold text-primary mb-4">
                     {aboutPageContent.vision.title}
                   </h3>
@@ -173,12 +174,12 @@ export default function AboutPage() {
               <StaggerItem key={i}>
                 <Card className="p-6 h-full text-center hover:shadow-lg transition-shadow">
                   <CardContent className="p-0">
-                    <div className="text-4xl mb-4">
-                      {value.icon === "microscope" && "🔬"}
-                      {value.icon === "handshake" && "🤝"}
-                      {value.icon === "leaf" && "🌿"}
-                      {value.icon === "users" && "👥"}
-                    </div>
+                    <IconCircle
+                      name={value.icon as IconName}
+                      size="xl"
+                      bgClassName="bg-secondary/20 mx-auto mb-4"
+                      className="text-primary"
+                    />
                     <h3 className="text-lg font-bold text-primary mb-2">
                       {value.title}
                     </h3>
