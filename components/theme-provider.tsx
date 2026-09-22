@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useEffect, useState } from "react"
+import { createContext, useContext, useEffect, useState, useSyncExternalStore } from "react"
 
 type Theme = "light" | "dark" | "system"
 
@@ -12,16 +12,27 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("system")
-  const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("light")
+function getStoredTheme(): Theme {
+  const stored = localStorage.getItem("theme")
+  return stored === "light" || stored === "dark" ? stored : "system"
+}
 
-  useEffect(() => {
-    const stored = localStorage.getItem("theme") as Theme | null
-    if (stored) {
-      setTheme(stored)
-    }
-  }, [])
+function subscribeToTheme(onChange: () => void) {
+  window.addEventListener("storage", onChange)
+  window.addEventListener("themechange", onChange)
+  return () => {
+    window.removeEventListener("storage", onChange)
+    window.removeEventListener("themechange", onChange)
+  }
+}
+
+function getServerTheme(): Theme {
+  return "system"
+}
+
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const theme = useSyncExternalStore(subscribeToTheme, getStoredTheme, getServerTheme)
+  const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("light")
 
   useEffect(() => {
     const root = document.documentElement
@@ -49,8 +60,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, [theme])
 
   const handleSetTheme = (newTheme: Theme) => {
-    setTheme(newTheme)
     localStorage.setItem("theme", newTheme)
+    window.dispatchEvent(new Event("themechange"))
   }
 
   return (
