@@ -2,8 +2,6 @@ import { Resend } from "resend"
 import { NextResponse } from "next/server"
 import { escapeHtml, normalizePhilippinePhone } from "@/lib/email-html"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 export async function POST(request: Request) {
   try {
     const body: unknown = await request.json()
@@ -31,6 +29,13 @@ export async function POST(request: Request) {
     if (phone && !phoneDigits) {
       return NextResponse.json({ error: "Enter a valid phone number" }, { status: 400 })
     }
+
+    const apiKey = process.env.RESEND_API_KEY
+    if (!apiKey) {
+      console.error("RESEND_API_KEY is not configured")
+      return NextResponse.json({ error: "Email service unavailable" }, { status: 503 })
+    }
+    const resend = new Resend(apiKey)
 
     const { data, error } = await resend.emails.send({
       from: process.env.EMAIL_FROM || "Paborito <onboarding@resend.dev>",
