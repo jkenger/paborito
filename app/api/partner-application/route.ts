@@ -1,5 +1,6 @@
 import { Resend } from "resend"
 import { NextResponse } from "next/server"
+import { escapeHtml, normalizePhilippinePhone } from "@/lib/email-html"
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
@@ -11,32 +12,50 @@ const partnerTypeLabels: Record<string, string> = {
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json()
-    const {
-      partnerType,
-      firstName,
-      lastName,
-      street,
-      addressLine1,
-      city,
-      region,
-      postalCode,
-      phone,
-      email,
-      areaOfDistribution,
-      notes,
-    } = body
+    const body: unknown = await request.json()
+    if (!body || typeof body !== "object" || Array.isArray(body)) {
+      return NextResponse.json({ error: "Invalid form data" }, { status: 400 })
+    }
 
-    // Validate required fields
-    if (!partnerType || !firstName || !lastName || !street || !city || !region || !phone || !email || !areaOfDistribution) {
+    const fields = body as Record<string, unknown>
+    const getText = (key: string) =>
+      typeof fields[key] === "string" ? (fields[key] as string).trim() : ""
+
+    const partnerType = getText("partnerType")
+    const firstName = getText("firstName")
+    const lastName = getText("lastName")
+    const street = getText("street")
+    const addressLine1 = getText("addressLine1")
+    const city = getText("city")
+    const region = getText("region")
+    const postalCode = getText("postalCode")
+    const phone = getText("phone")
+    const email = getText("email")
+    const areaOfDistribution = getText("areaOfDistribution")
+    const notes = getText("notes")
+
+    const partnerTypeLabel = partnerTypeLabels[partnerType]
+    if (
+      !partnerTypeLabel || !firstName || !lastName || !street || !city ||
+      !region || !phone || !email || !areaOfDistribution ||
+      [firstName, lastName, street, addressLine1, city, region, postalCode].some(value => value.length > 200) ||
+      areaOfDistribution.length > 5000 || notes.length > 5000
+    ) {
       return NextResponse.json(
-        { error: "Please fill in all required fields" },
+        { error: "Please fill in all required fields within the allowed lengths" },
         { status: 400 }
       )
     }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 320) {
+      return NextResponse.json({ error: "Enter a valid email address" }, { status: 400 })
+    }
 
-    const fullName = `${firstName} ${lastName}`
-    const partnerTypeLabel = partnerTypeLabels[partnerType] || partnerType
+    const phoneDigits = normalizePhilippinePhone(phone)
+    if (!phoneDigits) {
+      return NextResponse.json({ error: "Enter a valid phone number" }, { status: 400 })
+    }
+
+    const fullName = `${firstName} ${lastName}`.replace(/[\r\n]+/g, " ")
 
     // Build full address
     const addressParts = [street, addressLine1, city, region, postalCode].filter(Boolean)
@@ -60,7 +79,7 @@ export async function POST(request: Request) {
             <table style="width: 100%; border-collapse: collapse;">
               <tr>
                 <td style="padding: 10px 0; border-bottom: 1px solid #ddd; font-weight: bold; width: 150px;">Full Name:</td>
-                <td style="padding: 10px 0; border-bottom: 1px solid #ddd;">${fullName}</td>
+                <td style="padding: 10px 0; border-bottom: 1px solid #ddd;">${escapeHtml(fullName)}</td>
               </tr>
               <tr>
                 <td style="padding: 10px 0; border-bottom: 1px solid #ddd; font-weight: bold;">Partnership Type:</td>
@@ -73,30 +92,30 @@ export async function POST(request: Request) {
               <tr>
                 <td style="padding: 10px 0; border-bottom: 1px solid #ddd; font-weight: bold;">Email:</td>
                 <td style="padding: 10px 0; border-bottom: 1px solid #ddd;">
-                  <a href="mailto:${email}" style="color: #1a472a;">${email}</a>
+                  <a href="mailto:${escapeHtml(email)}" style="color: #1a472a;">${escapeHtml(email)}</a>
                 </td>
               </tr>
               <tr>
                 <td style="padding: 10px 0; border-bottom: 1px solid #ddd; font-weight: bold;">Phone:</td>
                 <td style="padding: 10px 0; border-bottom: 1px solid #ddd;">
-                  <a href="tel:+63${phone.replace(/\s/g, "")}" style="color: #1a472a;">+63 ${phone}</a>
+                  <a href="tel:+63${phoneDigits}" style="color: #1a472a;">+63 ${phoneDigits}</a>
                 </td>
               </tr>
               <tr>
                 <td style="padding: 10px 0; border-bottom: 1px solid #ddd; font-weight: bold;">Address:</td>
-                <td style="padding: 10px 0; border-bottom: 1px solid #ddd;">${fullAddress}</td>
+                <td style="padding: 10px 0; border-bottom: 1px solid #ddd;">${escapeHtml(fullAddress)}</td>
               </tr>
             </table>
 
             <h2 style="color: #1a472a; margin-top: 30px;">Area of Distribution</h2>
             <div style="background-color: #ffffff; padding: 20px; border-radius: 8px; border: 1px solid #ddd;">
-              <p style="margin: 0; white-space: pre-wrap;">${areaOfDistribution}</p>
+              <p style="margin: 0; white-space: pre-wrap;">${escapeHtml(areaOfDistribution)}</p>
             </div>
 
             ${notes ? `
             <h2 style="color: #1a472a; margin-top: 30px;">Additional Information</h2>
             <div style="background-color: #ffffff; padding: 20px; border-radius: 8px; border: 1px solid #ddd;">
-              <p style="margin: 0; white-space: pre-wrap;">${notes}</p>
+              <p style="margin: 0; white-space: pre-wrap;">${escapeHtml(notes)}</p>
             </div>
             ` : ""}
           </div>
