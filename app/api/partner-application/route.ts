@@ -2,8 +2,6 @@ import { Resend } from "resend"
 import { NextResponse } from "next/server"
 import { escapeHtml, normalizePhilippinePhone } from "@/lib/email-html"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 const partnerTypeLabels: Record<string, string> = {
   dealer: "Dealer",
   distributor: "Distributor",
@@ -60,6 +58,13 @@ export async function POST(request: Request) {
     // Build full address
     const addressParts = [street, addressLine1, city, region, postalCode].filter(Boolean)
     const fullAddress = addressParts.join(", ")
+
+    const apiKey = process.env.RESEND_API_KEY
+    if (!apiKey) {
+      console.error("RESEND_API_KEY is not configured")
+      return NextResponse.json({ error: "Email service unavailable" }, { status: 503 })
+    }
+    const resend = new Resend(apiKey)
 
     const { data, error } = await resend.emails.send({
       from: process.env.EMAIL_FROM || "Paborito <onboarding@resend.dev>",
